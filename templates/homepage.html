@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{%block title %} Welcome to The Roadie {% endblock %}
+
+{% block body %}
+<h1> Welcome to The Roadie!</h1>
+<h2> Create an account </h2>
+<form action="/users" method="POST">
+
+    <p>
+        <input type="text" name="first name" required="true" placeholder="first name">
+        <input type="text" name="last name" required="true" placeholder="last name">
+    </p>
+    <p>
+        <input type="text" name="email" required="true" placeholder="email">
+    </p>
+
+    <p>
+        <input type="password" name="password" required="true" placeholder="password">
+        <input type="password" name="confirm password" required="true" placeholder="confirm password">
+    </p>
+
+    <p>
+        <input type="submit">
+    </p>
+
+</form>
+
+
+<h2> Login </h2>
+<form action="/dashboard" method="POST">
+    <p>
+        <input type="text" name="email" placeholder="email" required="true">
+    </p>
+
+    <p>
+        <input type="password" name="password" placeholder="password" required="true">
+    </p>
+
+    <p>
+        <button type="submit">Login</button>
+    </p>
+
+</form>
+{% endblock %}
