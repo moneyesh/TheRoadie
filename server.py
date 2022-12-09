@@ -14,53 +14,58 @@ def homepage():
 
    return render_template('homepage.html') 
 
-# Create a new user
-@app.route("/users", methods=["POST"])
+@app.route("/register", methods=["POST"])
 def register_user():
+# For creating a new user    
     fname = request.form.get("first name")
     lname = request.form.get("last name")
     email = request.form.get("email")
     password = request.form.get("password")
     confirm_pw = request.form.get("confirm password")
     user = crud.get_user_by_email(email)
-        
+    print(user)    
     if user:
         flash("This email alreadys exists. Please log in.")
     else:
-        user = crud.create_user(fname, lname, email, password)
-        db.session.add(user) #can this go in crud as a part of the function or does it need to be here
-        db.session.commit()
-        flash("Account created successfuly! Please log in.")
+        if password == confirm_pw:
+            user = crud.create_user(email, fname, lname, password)
+            db.session.add(user) #can this go in crud as a part of the function or does it need to be here
+            db.session.commit()
+            flash("Account created successfuly! Please log in.")
+        else:
+            flash("The passwords do not match. Please try again.")
 
     return redirect('/')
 
 
 
+@app.route("/login", methods=["POST"])
+def user_login():
 # this is for users logging in
-@app.route("/dashboard", methods=["POST"])
-def user_dashboard():
-
     email = request.form.get("email") 
     password = request.form.get("password")
 
-    user = crud.get_user_by_email(email) #this isn't working. 
-    print(user)
+    user = crud.get_user_by_email(email) 
 
-    if not user or user.password != password: #so this isn't working
+    if not user or user.password != password: 
         flash("The email or password you entered was incorrect.")
+        print('invalid user')
+        return redirect("/homepage")
     else:
         # Log in user by storing the user's email in session
         session["user_email"] = user.email
-        flash(f"Welcome back, {user.email}!")
-    
+       
+        return redirect('/dashboard')
 
-    # name = user.first_name
-    return render_template('user_dashboard.html')
+@app.route("/dashboard")
+def dashboard():
+   
+    logged_in_email = session.get("user_email")
+    user = crud.get_user_by_email(logged_in_email)
+    trips = crud.get_trips_by_userid(user.user_id)
+    print('*************',trips)
 
-
-
-
-
+    return render_template("user_dashboard.html", trips=trips, user=user)
 
 
 

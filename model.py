@@ -1,6 +1,6 @@
 """Models for roadtrip companion app."""
-
 from flask_sqlalchemy import SQLAlchemy
+import datetime
 
 db = SQLAlchemy()
 
@@ -16,7 +16,7 @@ class User(db.Model):
     trips = db.relationship("Trip", back_populates="user")
 
     def __repr__(self):
-        return f'User Table: user_id={self.user_id}, first_name={self.first_name}, email={self.email}'
+        return f'<User Table: user_id={self.user_id}, first_name={self.first_name}, email={self.email}>'
 
     
 

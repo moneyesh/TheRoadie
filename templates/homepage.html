@@ -2,10 +2,11 @@
 
 {%block title %} Welcome to The Roadie {% endblock %}
 
+
 {% block body %}
 <h1> Welcome to The Roadie!</h1>
 <h2> Create an account </h2>
-<form action="/users" method="POST">
+<form action="/register" method="POST">
 
     <p>
         <input type="text" name="first name" required="true" placeholder="first name">
@@ -28,7 +29,7 @@
 
 
 <h2> Login </h2>
-<form action="/dashboard" method="POST">
+<form action="/login" method="POST">
     <p>
         <input type="text" name="email" placeholder="email" required="true">
     </p>
