@@ -9,16 +9,12 @@
     </p>
     
 
-    <h3> Past Trips </h3>
+    <h3><a href="/past-trips">Past Trips </a></h3>
      
 
-    <h3> Upcoming Trips </h3>
-        {% for trip in trips %}
-            {% if trip.leave_date <  %}
-        <ul>
-            <li>{{ trip.to_dest }} {{ trip.leave_date }}</li>  
-        </ul>   
-        {% endif %}
-        {% endfor %} 
+    <h3><a href="/upcoming-trips"> Upcoming Trips </a></h3>
+
+
+    <h3><a href="/gas-calc"> Gas Calculator </a></h3>
 
 {% endblock %}

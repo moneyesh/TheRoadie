@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title%} Map {% endblock %} -->
+<script src="map.js"></script>
+{% block body %}
+<div class="map">
+    <div class="fluid">
+        <h1> Directions </h1>
+        <p> Please enter your from and to destination </p>
+        <form class="map_route" action="/map/response">
+            <div class="form-group">
+                <label for="from"> From: </label>
+                <div>
+                    <input type="text" id="from" placeholder="Origin">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="to"> To: </label>
+                <div>
+                    <input type="text" id="from" placeholder="Destination">
+                </div>
+            </div>
+            <p>
+            <button type="submit"> Calculate Route </button>
+            </p>           
+        </form>
+        
+    </div>
+</div>
+<div class="googleMap">
+    <div id="googleMap">
+
+    </div>
+    <div id="output">
+
+    </div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+    <script src="map.js"></script>
+{% endblock %}

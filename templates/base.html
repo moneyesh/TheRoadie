@@ -3,6 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link href="/static/style.css" rel="stylesheet">
+    
     <title>
       {% block title %} {% endblock %}
     </title>
@@ -10,6 +11,7 @@
     {% block head %}
     {% endblock %}
   </head>
+  
   <body>
 
     {% for msg in get_flashed_messages() %}
@@ -19,6 +21,7 @@
      {% endfor %}
 
     {% block body %}
+
     {% endblock %}
 
     {% block after_body %}{% endblock %}

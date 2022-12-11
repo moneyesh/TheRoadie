@@ -1,0 +1,20 @@
+{% extends "base.html"%}
+
+{% block title%} Past trips  {% endblock %}
+
+{% block body %}
+<h1> View your past trips </h1>
+<p>
+    Click on a trip to populate trip details
+</p>
+
+<p>
+    {% for trip in trips %}
+    <!-- {# if trip.leave_date|to_date|is_future #} -->
+    <ul>
+        <li>{{ trip.to_dest }} {{ trip.leave_date }}</li>  
+    </ul>   
+    <!-- {# endif #} -->
+    {% endfor %} 
+</p>
+{% endblock %}

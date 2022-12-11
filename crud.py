@@ -53,3 +53,9 @@ def create_list(creation_date, list_name):
 
     return list
 
+
+def gas_calc(distance_mi, mpg, price):
+
+    cost = mpg * distance_mi * price
+
+    return cost

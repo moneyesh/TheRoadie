@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title%} Gas {% endblock %}
+
+{% block body %}
+
+    <h1> Gas Calculator </h1>
+    <p>
+       This will give an estimate of the gas cost 
+    </p>
+    <form action="/gas_calc">
+        <p>
+        <input type="text" name="distance_mi" placeholder="distance"></input>
+        </p>
+        <p>
+            <input type="text" name="mpg" placeholder="miles per gallon"></input>
+        </p>
+        <p>
+            <input type="text" name="price" placeholder="estimated price of gas"></input>
+            </p>
+        <button type="submit" id="total">Calculate</button>
+        <p>
+            <input type="number" readonly value="0">
+        </p>
+    </form>
+
+    <div>
+        
+    </div>
+
+{% endblock %}

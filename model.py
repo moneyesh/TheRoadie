@@ -1,6 +1,6 @@
 """Models for roadtrip companion app."""
 from flask_sqlalchemy import SQLAlchemy
-import datetime
+
 
 db = SQLAlchemy()
 
@@ -65,8 +65,8 @@ class Trip(db.Model):
     user = db.relationship("User", back_populates="trips")
     lists = db.relationship("List", back_populates="trip")
 
-    def __repr__(self):
-        return f'<Trip Table: trip_id={self.trip_id}, user_id={self.user_id}>'
+    # def __repr__(self):
+    #     return f'<Trip Table: trip_id={self.trip_id}, user_id={self.user_id}>'
 
 
 def connect_to_db(flask_app):
