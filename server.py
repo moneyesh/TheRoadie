@@ -89,12 +89,11 @@ def map_post():
 
     response = requests.get(
         f"https://maps.googleapis.com/maps/api/directions/json?destination={to_dest}&origin={from_dest}&key={MY_GOOGLE}")
-    print(response.text)
-
+  
     return redirect('/map')
 
 
-@app.route("/map/response", methods=["GET"])
+@app.route("/map/response")
 def get_map_route():
     # returns the info from the json file from google to display on the map
 
@@ -109,10 +108,11 @@ def past_trips():
     trips = crud.get_trips_by_userid(user.user_id)
 
     trip_list = []
-    # past_date = trips.return_date
-    # print(past_date)
+    today = date.today()
+    # print(date.today())
+    # print(trips)
     for trip in trips:
-        if trip.return_date < date.today():
+        if trip.return_date < today:
             trip_list.append(trip)
             return trip_list.sort()
         else:
@@ -135,24 +135,13 @@ def gas():
 #returns the to-do template
     return render_template("gas-calc.html")
 
-@app.route("/gas-calc", methods=['POST'])
-def gas_calc():
-#calculates the gas cost on the page    
-    distance_mi = request.form.get("distance")
-    mpg = request.form.get("mpg")
-    price = request.form.get("price")
-
-    cost = crud.gas_calc(distance_mi, mpg, price)
-
-@app.route("/gas/result")
-def gas_cost():
-
-    return
-
-
+# @app.route("/gas/result")
+# def gas_cost():
+   
+#     return
 
 
 
 if __name__ == "__main__":
     connect_to_db(app)
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="127.0.0.1", debug=True)

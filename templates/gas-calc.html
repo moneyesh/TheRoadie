@@ -1,31 +1,32 @@
 {% extends 'base.html' %}
 
 {% block title%} Gas {% endblock %}
-
+<!-- <script src="gas-calc.js"></script> -->
 {% block body %}
 
     <h1> Gas Calculator </h1>
     <p>
        This will give an estimate of the gas cost 
     </p>
-    <form action="/gas_calc">
+    <form id="gas-form">
         <p>
-        <input type="text" name="distance_mi" placeholder="distance"></input>
+        <input type="text" id="distance_mi" name="distance" placeholder="distance"></input>
         </p>
         <p>
-            <input type="text" name="mpg" placeholder="miles per gallon"></input>
+            <input type="text" id="mpg" name="mpg" placeholder="miles per gallon"></input>
         </p>
         <p>
-            <input type="text" name="price" placeholder="estimated price of gas"></input>
+            <input type="text" id="price" name="price" placeholder="estimated price of gas"></input>
             </p>
         <button type="submit" id="total">Calculate</button>
         <p>
-            <input type="number" readonly value="0">
+            <label>Total Gas Estimate:</label>
+            <input type="number" readonly value="0" id="gas_total">
         </p>
     </form>
 
     <div>
         
     </div>
-
+    <script src="../static/JS/calc.js"></script>
 {% endblock %}

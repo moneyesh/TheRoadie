@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block title%} Map {% endblock %} -->
-<script src="map.js"></script>
+
 {% block body %}
 <div class="map">
-    <div class="fluid">
+    <div>
         <h1> Directions </h1>
         <p> Please enter your from and to destination </p>
-        <form class="map_route" action="/map/response">
+        <form id="map-route" action="/map/response"> <!--check if this is right-->
             <div class="form-group">
                 <label for="from"> From: </label>
                 <div>
@@ -18,30 +18,29 @@
             <div class="form-group">
                 <label for="to"> To: </label>
                 <div>
-                    <input type="text" id="from" placeholder="Destination">
+                    <input type="text" id="to" placeholder="Destination">
                 </div>
             </div>
             <p>
-            <button type="submit"> Calculate Route </button>
+            <button type="submit" id="calc-route"> Calculate Route </button>
             </p>           
         </form>
         
     </div>
 </div>
-<div class="googleMap">
-    <div id="googleMap">
+<section class="googleMap">
 
-    </div>
-    <div id="output">
+    <div id="googleMap"></div> 
 
-    </div>
-</div>
-
-</div>
-
-</div>
-</div>
+    <div id="output"></div>
+</section>
 
 
-    <script src="map.js"></script>
+
+<script defer src="/static/JS/map.js"></script>
+<script
+defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA__DkLKg2fbmLnH3jIgY07hll1BXzc4p8&callback=initMap">
+</script>
+
 {% endblock %}
