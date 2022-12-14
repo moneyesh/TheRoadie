@@ -43,6 +43,7 @@ function calcRoute(event) {
         destination: end,
         travelMode: "DRIVING",
     };
+    let map;
     directionsService
         .route(request)
         .then((response) => {
@@ -51,7 +52,7 @@ function calcRoute(event) {
                 zoom: 7,
             };
             //create the map
-            const map = new google.maps.Map(
+            map = new google.maps.Map(
                 document.querySelector("#googleMap"),
                 mapOptions
             );
@@ -66,8 +67,10 @@ function calcRoute(event) {
             return fetch(url)          
         })
         .then((response) => response.json())
-        .then((responseJson) => {
-            console.log(responseJson)
+        .then((waypoints) => {
+            console.log(waypoints)
+            //TODO:start adding markers here
+            markers(map,waypoints)
         })
 
         .catch((e) => console.log("Directions request failed due to " + status));
@@ -76,3 +79,7 @@ function calcRoute(event) {
 document.querySelector("#map-route").addEventListener("submit", calcRoute);
 
 //https://developers.google.com/maps/documentation/javascript/examples/directions-panel
+
+function markers(map,waypoints) {
+
+}
