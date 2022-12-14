@@ -36,9 +36,6 @@ def get_trips_by_userid(user_id):
     return Trip.query.filter(Trip.user_id == user_id).all()
 
 
-
-
-
 # Task and List Functions
 def create_task(task, completed):
 

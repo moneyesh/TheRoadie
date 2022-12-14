@@ -71,7 +71,7 @@ def dashboard():
     logged_in_email = session.get("user_email")
     user = crud.get_user_by_email(logged_in_email)
     trips = crud.get_trips_by_userid(user.user_id)
-
+    
     return render_template("user_dashboard.html", trips=trips, user=user)
 
 
@@ -95,7 +95,7 @@ def map_post():
 
 @app.route("/map/response")
 def get_map_route():
-    # returns the info from the json file from google to display on the map
+    # returns the info from google to display on the map
 
     return redirect('/map')
 
@@ -109,17 +109,16 @@ def past_trips():
 
     trip_list = []
     today = date.today()
-    # print(date.today())
-    # print(trips)
+    
     for trip in trips:
         if trip.return_date < today:
+            print(trip)
             trip_list.append(trip)
-            return trip_list.sort()
-        else:
-            if trip.return_date >= date.today():
-                return "No past trips to diplay at this time."
+            print(trip_list)
+            trip_list.sort()
+        
 
-    return render_template("past_trips.html", trips=trips)
+    return render_template("past_trips.html", trips=trip_list)
 
 @app.route("/upcoming-trips")
 def upcoming_trip():
@@ -127,18 +126,29 @@ def upcoming_trip():
     logged_in_email = session.get("user_email")
     user = crud.get_user_by_email(logged_in_email)
     trips = crud.get_trips_by_userid(user.user_id)
-    return render_template("upcoming_trips.html", trips=trips)
+
+    trip_list = []
+    today = date.today()
+    print(today)
+    for trip in trips:
+        if trip.leave_date > today:
+            print(trip)
+            trip_list.append(trip)
+           
+
+    return render_template("upcoming_trips.html", trips=trip_list)
 
 
 @app.route("/gas-calc")
 def gas():
-#returns the to-do template
+
     return render_template("gas-calc.html")
 
-# @app.route("/gas/result")
-# def gas_cost():
-   
-#     return
+
+@app.route("/to-do")
+def to_do():
+#returns the to-do template   
+    return render_template("to-do.html")
 
 
 
