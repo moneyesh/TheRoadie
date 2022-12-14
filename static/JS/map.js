@@ -47,10 +47,8 @@ function calcRoute(event) {
         .route(request)
         .then((response) => {
             directionsRenderer.setDirections(response);
-            const myLocation = { lat: 33.76298, lng: -84.39502 };
             const mapOptions = {
                 zoom: 7,
-                center: myLocation,
             };
             //create the map
             const map = new google.maps.Map(
@@ -60,7 +58,19 @@ function calcRoute(event) {
 
             directionsRenderer.setMap(map);
         })
-        .catch((e) => window.alert("Directions request failed due to " + status));
+        .then(() => {
+            //to-do: call the /map/weather ajax
+            // console.log(start,end)
+            const url = `/map/weather?from=${start}&to=${end}`
+            console.log('****URL***', url)
+            return fetch(url)          
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            console.log(responseJson)
+        })
+
+        .catch((e) => console.log("Directions request failed due to " + status));
 }
 
 document.querySelector("#map-route").addEventListener("submit", calcRoute);

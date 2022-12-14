@@ -1,4 +1,4 @@
-from flask import (Flask, render_template, request, flash, session, redirect)
+from flask import (Flask, render_template, request, flash, session, redirect, jsonify)
 from model import connect_to_db, db
 import crud
 import json
@@ -12,7 +12,9 @@ app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
-MY_GOOGLE = os.environ['MY_GOOGLE']
+FRONT_GOOGLE = os.environ['FRONT_GOOGLE']
+BACK_GOOGLE = os.environ['BACK_GOOGLE']
+MY_WEATHER = os.environ['MY_WEATHER']
 
 
 @app.route("/")
@@ -78,7 +80,7 @@ def dashboard():
 @app.route("/map")
 def map():
     # displays the map page
-    return render_template("map.html")
+    return render_template("map.html", FRONT_GOOGLE=FRONT_GOOGLE)
 
 
 @app.route("/map", methods=["POST"])
@@ -87,18 +89,32 @@ def map_post():
     from_dest = request.form.get('from')
     to_dest = request.form.get('to')
 
-    response = requests.get(
-        f"https://maps.googleapis.com/maps/api/directions/json?destination={to_dest}&origin={from_dest}&key={MY_GOOGLE}")
+   
   
     return redirect('/map')
 
 
-@app.route("/map/response")
-def get_map_route():
-    # returns the info from google to display on the map
+@app.route("/map/weather")
+def get_weather():
+    from_dest = request.args.get('from')
+    print('***from',from_dest)
+    to_dest = request.args.get('to')
+    print('***to', to_dest)
+    #if departure_date == date.today():
+    google_response = requests.get(
+        f"https://maps.googleapis.com/maps/api/directions/json?destination={to_dest}&origin={from_dest}&key={BACK_GOOGLE}").json()
+    # weather_response = requests.get(f'http://api.weatherapi.com/v1/current.json?key={MY_WEATHER} &q=Atlanta&aqi=no').json()
 
-    return redirect('/map')
-
+    #elif departure_date > 14 days.... not sure about this one 
+    #for loop here then print to console
+    # print('*******', google_response)
+    leg = google_response['routes'][0]['legs'][0]
+    waypoints = [leg['start_location']]
+    print(waypoints)
+    
+    for step in leg['steps']:
+        waypoints.append(step['end_location'])
+    return jsonify(waypoints)
 
 @app.route("/past-trips")
 def past_trips():

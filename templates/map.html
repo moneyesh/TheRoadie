@@ -7,7 +7,7 @@
     <div>
         <h1> Directions </h1>
         <p> Please enter your from and to destination </p>
-        <form id="map-route" action="/map/response"> <!--check if this is right-->
+        <form id="map-route" action="#"> <!--check if this is right-->
             <div class="form-group">
                 <label for="from"> From: </label>
                 <div>
@@ -40,7 +40,8 @@
 <script defer src="/static/JS/map.js"></script>
 <script
 defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA__DkLKg2fbmLnH3jIgY07hll1BXzc4p8&callback=initMap">
+src="https://maps.googleapis.com/maps/api/js?key={{ FRONT_GOOGLE }}&callback=initMap">
 </script>
+
 
 {% endblock %}
