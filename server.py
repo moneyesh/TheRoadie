@@ -26,11 +26,11 @@ def homepage():
 @app.route("/register", methods=["POST"])
 def register_user():
     # For creating a new user
-    fname = request.form.get("first name")
-    lname = request.form.get("last name")
-    email = request.form.get("email")
-    password = request.form.get("password")
-    confirm_pw = request.form.get("confirm password")
+    fname = request.json.get("first name")
+    lname = request.json.get("last name")
+    email = request.json.get("email")
+    password = request.json.get("password")
+    confirm_pw = request.json.get("confirm password")
     user = crud.get_user_by_email(email)
     # print(user)
     if user:
@@ -51,8 +51,8 @@ def register_user():
 @app.route("/login", methods=["POST"])
 def user_login():
     # this is for users logging in
-    email = request.form.get("email")
-    password = request.form.get("password")
+    email = request.json.get("email")
+    password = request.json.get("password")
 
     user = crud.get_user_by_email(email)
 
@@ -86,8 +86,8 @@ def map():
 @app.route("/map", methods=["POST"])
 def map_post():
     # grabs the information the user puts in for their destination to post to google
-    from_dest = request.form.get('from')
-    to_dest = request.form.get('to')
+    from_dest = request.json.get('from')
+    to_dest = request.json.get('to')
 
     return redirect('/map')
 
@@ -137,16 +137,19 @@ def my_trips():
 # Create new trips
 @app.route("/my-trips/create-trip", methods=["POST"])
 def create_my_trips():
-    leave_date = request.form.get('depart_date')
-    return_date = request.form.get('return_date')
-    print(leave_date,return_date)
-    to_dest = request.form.get('to')
-    from_dest = request.form.get('from')
+    leave_date = request.json.get('depart_date')
+    return_date = request.json.get('return_date')
+    # print(leave_date,return_date)
+    to_dest = request.json.get('to')
+    from_dest = request.json.get('from')
+    to_do = request.json.get('to_do_list_items')
+    print(to_do)
     logged_in_email = session.get("user_email")
     user = crud.get_user_by_email(logged_in_email)
  
     create_trip = crud.create_trip(leave_date, return_date, to_dest, from_dest, user)
-    db.session.add(create_trip)
+    create_to_do = crud.create_to_do_list(to_do)
+    db.session.add(create_trip, to_do)
     db.session.commit()
     flash("Trip created successfully!")
     
@@ -155,7 +158,7 @@ def create_my_trips():
     return redirect ("/my-trips")
 
 
-@app.route("/upcoming-trips") #TODO: combine with the my trips
+@app.route("/my-trips/upcoming-trips") #TODO: combine with the my trips
 def upcoming_trip():
 
     logged_in_email = session.get("user_email")

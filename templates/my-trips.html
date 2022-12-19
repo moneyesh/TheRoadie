@@ -5,7 +5,7 @@
 {% block body %}
 <h1> Plan a new trip </h1>
 <p>
-    <form method="POST" action="/my-trips/create-trip">
+    <form method="POST" action="/my-trips/create-trip" id="create-trip">
         <div>
         <label> Leaving from: </label>
         <input type="text" id="from" name="from" placeholder="origin"></input>
@@ -20,15 +20,25 @@
         
         <label> Return date: </label>
         <input type="date" id="return_date" name="return_date" placeholder="mm/dd/yyyy"></input>
-        </div>
-        <br/>       
+    </div>
+    <br/>   
+    <div id="to-do-list">
+
+    </div>  
+    <div>  
+        <button type="button" id="to-do-list-button">+ Add to-do list</button>
+    </div>
+    <br>
+    <div>
         <button type="submit" id="create-trip">Create Trip</button>
+    </div>    
     </form>
 </p>
 
 
-
-
+<br/>
+<div>
+<h3>Past Trips</h3>
 <p>
     {% for trip in trips %}
             
@@ -38,4 +48,6 @@
 
     {% endfor %} 
 </p>
+</div>
+<script src="/static/JS/my-trips.js"></script>
 {% endblock %}

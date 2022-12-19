@@ -3,3 +3,8 @@
     height: 80%;
     margin: 20px auto;
 }
+
+.to-do-list-item {
+    display: block;
+    margin-bottom: 1em;
+}

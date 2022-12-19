@@ -1,5 +1,5 @@
 # functions that will populate my model.py
-from model import db, User, List, Trip, Task, connect_to_db
+from model import db, User, List, Trip, ToDo, connect_to_db
 
 # USER FUNCTIONS
 
@@ -37,11 +37,11 @@ def get_trips_by_userid(user_id):
 
 
 # Task and List Functions
-def create_task(task, completed):
+def create_to_do_list(to_do, completed=False):
 
-    task = Task(task=task, completed=completed)
+    to_do = ToDo(to_do,completed)
 
-    return task
+    return to_do
 
 
 def create_list(creation_date, list_name):

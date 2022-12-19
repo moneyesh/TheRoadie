@@ -20,15 +20,15 @@ class User(db.Model):
 
     
 
-class Task(db.Model):
+class ToDo(db.Model):
 
-    __tablename__= "tasks"
+    __tablename__= "to_do"
     task_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False)
     list_id = db.Column(db.Integer, db.ForeignKey('lists.list_id'), nullable=False)
-    task = db.Column(db.Text)
+    to_do = db.Column(db.Text)
     completed = db.Column(db.Boolean)
 
-    list = db.relationship("List", back_populates='tasks')
+    list = db.relationship("List", back_populates='to_dos')
 
     def __repr__(self):
         return f'<Task Table: task_id={self.task_id}, task={self.task}>'
@@ -43,7 +43,7 @@ class List(db.Model):
     list_name = db.Column(db.String(30))
 
     trip = db.relationship("Trip", back_populates='lists')
-    tasks = db.relationship("Task", back_populates='list')
+    to_dos = db.relationship("ToDo", back_populates='list')
 
     def __repr__(self):
         return f'<List Table: list_id={self.list_id}, trip_id={self.trip_id}>'
