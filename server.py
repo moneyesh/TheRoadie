@@ -32,7 +32,7 @@ def register_user():
     password = request.form.get("password")
     confirm_pw = request.form.get("confirm password")
     user = crud.get_user_by_email(email)
-    print(user)
+    # print(user)
     if user:
         flash("This email alreadys exists. Please log in.")
     else:
@@ -89,8 +89,6 @@ def map_post():
     from_dest = request.form.get('from')
     to_dest = request.form.get('to')
 
-   
-  
     return redirect('/map')
 
 
@@ -103,7 +101,7 @@ def get_weather():
     #if departure_date == date.today():
     google_response = requests.get(
         f"https://maps.googleapis.com/maps/api/directions/json?destination={to_dest}&origin={from_dest}&key={BACK_GOOGLE}").json()
-    # weather_response = requests.get(f'http://api.weatherapi.com/v1/current.json?key={MY_WEATHER} &q=Atlanta&aqi=no').json()
+    weather_response = requests.get(f'http://api.weatherapi.com/v1/current.json?key={MY_WEATHER}&q=Atlanta&aqi=no').json()
 
     #elif departure_date > 14 days.... not sure about this one 
     #for loop here then print to console
@@ -116,27 +114,48 @@ def get_weather():
         waypoints.append(step['end_location'])
     return jsonify(waypoints)
 
-@app.route("/past-trips")
-def past_trips():
+
+@app.route("/my-trips")
+def my_trips():
  # this will populate the trips on the past trips page. need to figure out how to expand the trip to show more details or populate the details some where on the page
     logged_in_email = session.get("user_email")
     user = crud.get_user_by_email(logged_in_email)
     trips = crud.get_trips_by_userid(user.user_id)
 
-    trip_list = []
-    today = date.today()
+    # trip_list = []
+    # today = date.today()
     
-    for trip in trips:
-        if trip.return_date < today:
-            print(trip)
-            trip_list.append(trip)
-            print(trip_list)
-            trip_list.sort()
+    # for trip in trips:
+    #     if trip.return_date < today:
+    #         print(trip)
+    #         trip_list.append(trip)
+    #         print(trip_list)
+    #         trip_list.sort()
         
+    return render_template("my-trips.html", trips=trips) #TODO fix to trip_list
 
-    return render_template("past_trips.html", trips=trip_list)
+# Create new trips
+@app.route("/my-trips/create-trip", methods=["POST"])
+def create_my_trips():
+    leave_date = request.form.get('depart_date')
+    return_date = request.form.get('return_date')
+    print(leave_date,return_date)
+    to_dest = request.form.get('to')
+    from_dest = request.form.get('from')
+    logged_in_email = session.get("user_email")
+    user = crud.get_user_by_email(logged_in_email)
+ 
+    create_trip = crud.create_trip(leave_date, return_date, to_dest, from_dest, user)
+    db.session.add(create_trip)
+    db.session.commit()
+    flash("Trip created successfully!")
+    
+    # flash("Error, something went wrong. Please make sure you are logged in.")
 
-@app.route("/upcoming-trips")
+    return redirect ("/my-trips")
+
+
+@app.route("/upcoming-trips") #TODO: combine with the my trips
 def upcoming_trip():
 
     logged_in_email = session.get("user_email")

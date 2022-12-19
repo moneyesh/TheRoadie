@@ -1,0 +1,41 @@
+{% extends "base.html"%}
+
+{% block title%} My Trips  {% endblock %}
+
+{% block body %}
+<h1> Plan a new trip </h1>
+<p>
+    <form method="POST" action="/my-trips/create-trip">
+        <div>
+        <label> Leaving from: </label>
+        <input type="text" id="from" name="from" placeholder="origin"></input>
+        
+        <label> Going to: </label>
+        <input type="text" id="to" name="to" placeholder="destination"></input>
+        </div>
+        <br/>
+        <div>
+        <label> Leave date: </label>
+        <input type="date" id="leave_date" name="depart_date" placeholder="mm/dd/yyyy"></input>
+        
+        <label> Return date: </label>
+        <input type="date" id="return_date" name="return_date" placeholder="mm/dd/yyyy"></input>
+        </div>
+        <br/>       
+        <button type="submit" id="create-trip">Create Trip</button>
+    </form>
+</p>
+
+
+
+
+<p>
+    {% for trip in trips %}
+            
+    <ul>
+        <li>{{ trip.to_dest }} {{ trip.leave_date }}</li>  
+    </ul>   
+
+    {% endfor %} 
+</p>
+{% endblock %}
