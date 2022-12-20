@@ -51,8 +51,8 @@ def register_user():
 @app.route("/login", methods=["POST"])
 def user_login():
     # this is for users logging in
-    email = request.json.get("email")
-    password = request.json.get("password")
+    email = request.form.get("email")
+    password = request.form.get("password")
 
     user = crud.get_user_by_email(email)
 
@@ -143,13 +143,21 @@ def create_my_trips():
     to_dest = request.json.get('to')
     from_dest = request.json.get('from')
     to_do = request.json.get('to_do_list_items')
+    list_name = request.json.get('list_name')
     print(to_do)
     logged_in_email = session.get("user_email")
     user = crud.get_user_by_email(logged_in_email)
  
+    for index in range(len(to_do)):
+        print(to_do)
+
+        
+
     create_trip = crud.create_trip(leave_date, return_date, to_dest, from_dest, user)
-    create_to_do = crud.create_to_do_list(to_do)
-    db.session.add(create_trip, to_do)
+    create_list = crud.create_list(create_trip, date.today(), list_name)
+    create_to_do = crud.create_to_do_list(create_list, to_do)
+    db.session.add(create_trip)
+    db.session.add(create_to_do)
     db.session.commit()
     flash("Trip created successfully!")
     

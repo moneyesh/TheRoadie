@@ -35,3 +35,4 @@ document.querySelector("#create-trip").addEventListener('submit', (event) => {
     ;
 
 });
+
