@@ -1,5 +1,6 @@
 'use strict';
 
+
 document.querySelector('#gas-form').addEventListener('submit', (evt) => {
   evt.preventDefault();
 
@@ -9,6 +10,7 @@ document.querySelector('#gas-form').addEventListener('submit', (evt) => {
   const price = document.querySelector('#price').value
   const total = mpg * distance * price
   console.log(total)
+
 
   document.querySelector('#gas_total').value = total;
 

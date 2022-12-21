@@ -37,7 +37,7 @@ def get_trips_by_userid(user_id):
 
 
 # Task and List Functions
-def create_to_do_list(list, to_do, completed=False):
+def create_to_do(list, to_do, completed=False):
 
     to_dos = ToDo(list=list, to_do=to_do, completed=completed)
 

@@ -22,38 +22,51 @@
         <input type="date" id="return_date" name="return_date" placeholder="mm/dd/yyyy"></input>
     </div>
     <br/>   
-    <div id="to-do-list">
-
-    </div> 
-
-    <form> 
-    <div>  
-        <button class="hidden" type="button" id="to-do-list-button">+ Add to-do list</button>
+   
+    <br/>
+    <div id="to-do-form" class="hidden">
+        <label> List Name: </label>
+        <input type="text" id="list-name" placeholder="ex: dad's packing list, snacks, prep the car"></input>
+        <br/>
+        <br/>
+        <div id="to-do-list"></div> 
+        <br/>
+        <button type="button" id="to-do-list-button">+ Add a to-do</button>
     </div>
-    </form>
+    <div>    
+        <button type="button" id="create_list" onclick="this.style.display='none'">Create a To-Do List</button>
+    </div>
     <br/>
     <div>
-        <button type="button" id="create_list">Create a To-Do List</button>
-    </div>
-    <br/>
-    <div>
-        <button type="submit" id="create-trip">Create Trip</button>
+        <button type="submit" id="create-trip">Save Trip</button>
     </div>    
     </form>
 </p>
 
 
 <br/>
-<div>
+<div class="container">
 <h3>Past Trips</h3>
 <p>
-    {% for trip in trips %}
+    {% for trip in past_trip_list %}
             
     <ul>
         <li>{{ trip.to_dest }} {{ trip.leave_date }}</li>  
     </ul>   
 
     {% endfor %} 
+</p>
+</div>
+<div class="container">
+<h3> Future Trips </h3>
+<p>
+    {% for trip in future_trip_list %}
+            
+    <ul>
+        <li>{{ trip.to_dest }} {{ trip.leave_date }}</li>  
+    </ul>   
+
+    {% endfor %}  
 </p>
 </div>
 <script src="/static/JS/my-trips.js"></script>

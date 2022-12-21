@@ -5,10 +5,15 @@
 }
 
 .to-do-list-item {
-    display: block;
-    margin-bottom: 1em;
+    display: grid;
+    margin-bottom: .5em;
 }
 
-/* .hidden {
+.hidden {
     display: none;
-} */
+}
+
+#list-name {
+    height:auto;
+    width: 20%;
+}

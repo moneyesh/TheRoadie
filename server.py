@@ -5,7 +5,7 @@ import json
 from jinja2 import StrictUndefined
 import os
 import requests
-from datetime import date
+from datetime import date, datetime
 
 app = Flask(__name__)
 
@@ -26,11 +26,11 @@ def homepage():
 @app.route("/register", methods=["POST"])
 def register_user():
     # For creating a new user
-    fname = request.json.get("first name")
-    lname = request.json.get("last name")
-    email = request.json.get("email")
-    password = request.json.get("password")
-    confirm_pw = request.json.get("confirm password")
+    fname = request.form.get("first name")
+    lname = request.form.get("last name")
+    email = request.form.get("email")
+    password = request.form.get("password")
+    confirm_pw = request.form.get("confirm password")
     user = crud.get_user_by_email(email)
     # print(user)
     if user:
@@ -73,6 +73,11 @@ def dashboard():
     logged_in_email = session.get("user_email")
     user = crud.get_user_by_email(logged_in_email)
     trips = crud.get_trips_by_userid(user.user_id)
+    
+    # for trip in trips:
+    #     if trip.leave_date > date.today():
+    #         trip_countdown = datetime.date(trip.leave_date) - datetime.date.today()
+    #     return(f"Your trip to {trip.to_dest} is in: {trip} days")
     
     return render_template("user_dashboard.html", trips=trips, user=user)
 
@@ -122,17 +127,19 @@ def my_trips():
     user = crud.get_user_by_email(logged_in_email)
     trips = crud.get_trips_by_userid(user.user_id)
 
-    # trip_list = []
-    # today = date.today()
+    past_trip_list = []
+    future_trip_list = []
+    today = date.today()
     
-    # for trip in trips:
-    #     if trip.return_date < today:
-    #         print(trip)
-    #         trip_list.append(trip)
-    #         print(trip_list)
-    #         trip_list.sort()
+    for trip in trips:
+        if trip.return_date < today:
+            print(trip)
+            past_trip_list.append(trip)
+            print(past_trip_list)
+        elif trip.leave_date > today:
+            future_trip_list.append(trip)    
         
-    return render_template("my-trips.html", trips=trips) #TODO fix to trip_list
+    return render_template("my-trips.html", trips=trips, future_trip_list=future_trip_list, past_trip_list=past_trip_list) #TODO fix to trip_list
 
 # Create new trips
 @app.route("/my-trips/create-trip", methods=["POST"])
@@ -147,42 +154,36 @@ def create_my_trips():
     print(to_do)
     logged_in_email = session.get("user_email")
     user = crud.get_user_by_email(logged_in_email)
- 
-    for index in range(len(to_do)):
-        print(to_do)
-
-        
 
     create_trip = crud.create_trip(leave_date, return_date, to_dest, from_dest, user)
-    create_list = crud.create_list(create_trip, date.today(), list_name)
-    create_to_do = crud.create_to_do_list(create_list, to_do)
     db.session.add(create_trip)
-    db.session.add(create_to_do)
+    create_list = crud.create_list(create_trip, date.today(), list_name)
+    db.session.add(create_list)
+    for to_do_item in to_do:
+        create_to_do = crud.create_to_do(create_list, to_do_item)
+        db.session.add(create_to_do)
     db.session.commit()
     flash("Trip created successfully!")
-    
-    # flash("Error, something went wrong. Please make sure you are logged in.")
-
     return redirect ("/my-trips")
 
 
-@app.route("/my-trips/upcoming-trips") #TODO: combine with the my trips
-def upcoming_trip():
+# @app.route("/my-trips/upcoming-trips") #TODO: combine with the my trips
+# def upcoming_trip():
 
-    logged_in_email = session.get("user_email")
-    user = crud.get_user_by_email(logged_in_email)
-    trips = crud.get_trips_by_userid(user.user_id)
+#     logged_in_email = session.get("user_email")
+#     user = crud.get_user_by_email(logged_in_email)
+#     trips = crud.get_trips_by_userid(user.user_id)
 
-    trip_list = []
-    today = date.today()
-    print(today)
-    for trip in trips:
-        if trip.leave_date > today:
-            print(trip)
-            trip_list.append(trip)
+#     trip_list = []
+#     today = date.today()
+#     print(today)
+#     for trip in trips:
+#         if trip.leave_date > today:
+#             print(trip)
+#             trip_list.append(trip)
            
 
-    return render_template("upcoming_trips.html", trips=trip_list)
+#     return render_template("upcoming_trips.html", trips=trip_list)
 
 
 @app.route("/gas-calc")
@@ -191,13 +192,13 @@ def gas():
     return render_template("gas-calc.html")
 
 
-@app.route("/to-do")
-def to_do():
-#returns the to-do template   
-    return render_template("to-do.html")
+# @app.route("/to-do")
+# def to_do():
+# #returns the to-do template   
+#     return render_template("to-do.html")
 
 
 
 if __name__ == "__main__":
     connect_to_db(app)
-    app.run(host="127.0.0.1", debug=True)
+    app.run(host="0.0.0.0", debug=True, port=5001)

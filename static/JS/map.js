@@ -81,22 +81,28 @@ document.querySelector("#map-route").addEventListener("submit", calcRoute);
 //https://developers.google.com/maps/documentation/javascript/examples/directions-panel
 
 function markers(map,waypoints) {
+    const image =
+    "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
 
-    // const lat = 
-    // const lon =
-   
+    for (const waypoint of waypoints) {
+        const {lat,lng} = waypoint;
+        const beachMarker = new google.maps.Marker({
+            position: waypoint,
+            map,
+            icon: image,
+          });
+    } 
+
+
+
+
     //  Markers location.lat and location.lon need to equal each waypoint lat, lng. Need a for loop
     //  once the data is being looped through so that all waypoints are assigned, the markers can be assigned to each one.
     //the weather conditions need to pull from current.condition.text and the icon can be from current.condition.icon
     // the images that are imported for icons need to be assigned to image for the certain weather conditions. 
 
-    const image =
-    "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
-  const beachMarker = new google.maps.Marker({
-    position: { lat: -33.89, lng: 151.274 },
-    map,
-    icon: image,
-  });
+    
+
 }
 
 window.initMap = initMap;
