@@ -1,20 +1,5 @@
 "use strict";
 
-// function initMap() {
-//   const myLocation = { lat: 33.8591744, lng: -83.918848 };
-
-//   const mapOptions = {
-//     zoom: 11,
-//     center: myLocation,
-//     // mapTypeId: google.maps.MapTypeId.ROADMAP
-//   };
-//   //create the map
-//   const map = new google.maps.Map(
-//     document.querySelector("#googleMap"),
-//     mapOptions
-//   );
-// }
-
 function initMap() {
     const myLocation = { lat: 33.76298, lng: -84.39502 };
     const directionsRenderer = new google.maps.DirectionsRenderer();

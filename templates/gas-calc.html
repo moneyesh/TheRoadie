@@ -10,18 +10,25 @@
     </p>
     <form id="gas-form">
         <p>
+        <label>Distance: </label>
         <input type="text" id="distance_mi" name="distance" placeholder="distance"></input>
         </p>
         <p>
+            <label>Miles per gallon (mpg): </label>
             <input type="text" id="mpg" name="mpg" placeholder="miles per gallon"></input>
         </p>
         <p>
+            <label>Estimated cost of Gas per gallon: </label>
             <input type="text" id="price" name="price" placeholder="estimated price of gas"></input>
             </p>
         <button type="submit" id="total">Calculate</button>
         <p>
             <label>Total Gas Estimate:</label>
-            <input type="number" readonly value="0" id="gas_total">
+            <input type="text" readonly value="0" id="gas_total">
+        </p>
+        <p>
+            <label for="gallons-needed">Amount of Gallons Needed:</label>
+            <input type="number" readonly value="0" id="gallons_needed">
         </p>
     </form>
 
