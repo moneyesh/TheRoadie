@@ -62,7 +62,7 @@ function calcRoute(event) {
         .then(() => {
             //to-do: call the /map/weather ajax
             // console.log(start,end)
-            const url = `/map/weather?from=${start}&to=${end}`
+            const url = `/map/waypoints?from=${start}&to=${end}`
             console.log('****URL***', url)
             return fetch(url)          
         })
@@ -81,19 +81,29 @@ document.querySelector("#map-route").addEventListener("submit", calcRoute);
 //https://developers.google.com/maps/documentation/javascript/examples/directions-panel
 
 function markers(map,waypoints) {
-    const image =
-    "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+    
 
     for (const waypoint of waypoints) {
-        const {lat,lng} = waypoint;
-        const beachMarker = new google.maps.Marker({
+        renderMarker(waypoint, map);
+    }
+}
+
+function renderMarker(waypoint, map) {
+    const {lat,lng} = waypoint;
+    const q = `${lat},${lng}`;
+
+    fetch(`/waypoint-weather?q=${q}`)
+    .then((response) => response.json())
+    .then((responseJson) => {
+        console.log(responseJson);
+        const weatherMarker = new google.maps.Marker({
             position: waypoint,
             map,
-            icon: image,
+            icon: responseJson.forecast_icon,
+            title: responseJson.forecast_text
           });
-    } 
-
-
+    }) 
+}
 
 
     //  Markers location.lat and location.lon need to equal each waypoint lat, lng. Need a for loop
@@ -103,6 +113,6 @@ function markers(map,waypoints) {
 
     
 
-}
+
 
 window.initMap = initMap;
