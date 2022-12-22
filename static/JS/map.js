@@ -55,8 +55,9 @@ function calcRoute(event) {
         .then((waypoints) => {
             console.log(waypoints)
             //TODO:start adding markers here
-            markers(map,waypoints)
-            // document.querySelector('#distance').value = distance
+            markers(map,waypoints[0])
+            console.log(waypoints[1][0].text)
+            document.querySelector('#distance').value = waypoints[1][0].text
         })
         
         .catch((e) => console.log("Directions request failed due to " + status));

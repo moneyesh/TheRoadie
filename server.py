@@ -73,13 +73,19 @@ def dashboard():
     logged_in_email = session.get("user_email")
     user = crud.get_user_by_email(logged_in_email)
     trips = crud.get_trips_by_userid(user.user_id)
-    
-    # for trip in trips:
-    #     if trip.leave_date > date.today():
-    #         trip_countdown = datetime.date(trip.leave_date) - datetime.date.today()
-    #     return(f"Your trip to {trip.to_dest} is in: {trip} days")
-    
-    return render_template("user_dashboard.html", trips=trips, user=user)
+    soonest_trip = ""
+    countdown = None
+    for trip in trips:
+        
+        if trip.leave_date > date.today():
+            trip_countdown = trip.leave_date - date.today()
+            if countdown is None or trip_countdown < countdown:
+                countdown = trip_countdown
+                soonest_trip = trip.to_dest
+    # print(soonest_trip)
+    # print(countdown)
+    #TODO: Test on 12/23 that next trip is in countdown
+    return render_template("user_dashboard.html", trips=trips, user=user, soonest_trip=soonest_trip, countdown=countdown)
 
 
 @app.route("/map")
@@ -111,14 +117,14 @@ def get_waypoints():
     # print('*******', google_response)
     leg = google_response['routes'][0]['legs'][0]
     waypoints = [leg['start_location']]
-   
+    # print(waypoints)
     distance = [leg['distance']]
     print('!!!DIST!!!!',distance)
-    # print(waypoints)
+   
     
     for step in leg['steps']:
         waypoints.append(step['end_location'])
-    return jsonify(waypoints)
+    return jsonify(waypoints, distance)
 
 @app.route("/waypoint-weather")
 def way_weather():

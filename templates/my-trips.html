@@ -1,74 +1,82 @@
 {% extends "base.html"%}
 
-{% block title%} My Trips  {% endblock %}
+{% block title%} My Trips {% endblock %}
 
 {% block body %}
 <h1> Plan a new trip </h1>
 <p>
-    <form method="POST" action="/my-trips/create-trip" id="create-trip">
-        <div>
+<form method="POST" action="/my-trips/create-trip" id="create-trip">
+    <div>
         <label> Leaving from: </label>
         <input type="text" id="from" name="from" placeholder="origin"></input>
-        
+
         <label> Going to: </label>
         <input type="text" id="to" name="to" placeholder="destination"></input>
-        </div>
-        <br/>
-        <div>
+    </div>
+    <br />
+    <div>
         <label> Leave date: </label>
         <input type="date" id="leave_date" name="depart_date" placeholder="mm/dd/yyyy"></input>
-        
+
         <label> Return date: </label>
         <input type="date" id="return_date" name="return_date" placeholder="mm/dd/yyyy"></input>
-    
+
     </div>
-    <br/>   
-   
-    <br/>
+    <br />
+
+    <br />
     <div id="to-do-form" class="hidden">
         <label> List Name: </label>
         <input type="text" id="list-name" placeholder="ex: dad's packing list, snacks, prep the car"></input>
-        <br/>
-        <br/>
-        <div id="to-do-list"></div> 
-        <br/>
+        <br />
+        <br />
+        <div id="to-do-list"></div>
+        <br />
         <button type="button" id="to-do-list-button">+ Add a to-do</button>
     </div>
-    <div>    
+    <div>
         <button type="button" id="create_list" onclick="this.style.display='none'">Create a To-Do List</button>
     </div>
-    <br/>
+    <br />
     <div>
         <button type="submit" id="create-trip">Save Trip</button>
-    </div>    
-    </form>
+    </div>
+</form>
 </p>
 
 
-<br/>
+<br />
 <div class="container">
-<h3>Past Trips</h3>
-<p>
-    {% for trip in past_trip_list %}
-            
-    <ul>
-        <li>{{ trip.to_dest }} {{ trip.leave_date }}</li>  
-    </ul>   
+    <h3>View Past Trips</h3>
+    <p>
+    <form>
+        <select for="past_trip_list">
+            {% for trip in past_trip_list %}
 
-    {% endfor %} 
-</p>
+            <option>{{ trip.to_dest }} {{ trip.leave_date }}</option>
+
+            {% endfor %}
+        </select>
+        <br><br>
+    <button type="button" id="view-trip-details">View Trip Details</input>
+    </form>
+    </p>
 </div>
 <div class="container">
-<h3> Future Trips </h3>
-<p>
-    {% for trip in future_trip_list %}
-            
-    <ul>
-        <li>{{ trip.to_dest }} {{ trip.leave_date }}</li>  
-    </ul>   
+    <h3> View Future Trips </h3>
+    <p>
+    <form>
+        <select for="future_trip_list">
+    
+        {% for trip in future_trip_list %}
 
-    {% endfor %}  
-</p>
+        <option>{{ trip.to_dest }} {{ trip.leave_date }}</option>
+    {% endfor %}
+    </select>
+    <br><br>
+    <button type="button" id="view-trip-details">View Trip Details</input>
+
+    </p>
 </div>
 <script src="/static/JS/my-trips.js"></script>
 {% endblock %}
