@@ -17,3 +17,25 @@
     height:auto;
     width: 20%;
 }
+
+.to-do-container {
+    display: flex;
+    align-items: baseline;
+}
+
+.to-do-list-item {
+    display: grid;
+    margin-bottom: 0.5em;
+    margin-right: 0.5em;
+}
+
+
+.remove-to-do {
+    font-size: 12px;
+    border-radius: 4px;
+    border-width: 1px;
+    margin-top: 0.5em;
+    margin-inline: 0.5em;
+}
+
+

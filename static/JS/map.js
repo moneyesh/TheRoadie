@@ -56,8 +56,9 @@ function calcRoute(event) {
             console.log(waypoints)
             //TODO:start adding markers here
             markers(map,waypoints)
+            // document.querySelector('#distance').value = distance
         })
-
+        
         .catch((e) => console.log("Directions request failed due to " + status));
 }
 
@@ -83,7 +84,7 @@ function renderMarker(waypoint, map) {
         console.log(responseJson);
         const weatherMarker = new google.maps.Marker({
             position: waypoint,
-            map,
+            map: map,
             icon: responseJson.forecast_icon,
             title: responseJson.forecast_text
           });

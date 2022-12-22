@@ -100,20 +100,21 @@ def map_post():
 @app.route("/map/waypoints")
 def get_waypoints():
     from_dest = request.args.get('from')
-    print('***from',from_dest)
+    # print('***from',from_dest)
     to_dest = request.args.get('to')
-    print('***to', to_dest)
-    #if departure_date == date.today():
+    # print('***to', to_dest)
     google_response = requests.get(
         f"https://maps.googleapis.com/maps/api/directions/json?destination={to_dest}&origin={from_dest}&key={BACK_GOOGLE}").json()
     # weather_response = requests.get(f'http://api.weatherapi.com/v1/current.json?key={MY_WEATHER}&q=Atlanta&aqi=no').json()
 
-    #elif departure_date > 14 days.... not sure about this one 
-    #for loop here then print to console
+
     # print('*******', google_response)
     leg = google_response['routes'][0]['legs'][0]
     waypoints = [leg['start_location']]
-    print(waypoints)
+   
+    distance = [leg['distance']]
+    print('!!!DIST!!!!',distance)
+    # print(waypoints)
     
     for step in leg['steps']:
         waypoints.append(step['end_location'])
@@ -122,8 +123,9 @@ def get_waypoints():
 @app.route("/waypoint-weather")
 def way_weather():
     q = request.args.get("q")
+   
     weather_response = requests.get(f'http://api.weatherapi.com/v1/current.json?key={MY_WEATHER}&q={q}&aqi=no').json()
-    print(weather_response)
+    # print(weather_response)
     forecast_text = weather_response.get('current').get('condition').get('text')
     forecast_icon = weather_response.get('current').get('condition').get('icon')    
     forecast = {"forecast_icon": forecast_icon, "forecast_text": forecast_text}

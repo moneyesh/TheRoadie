@@ -1,22 +1,29 @@
 // this click event creates new lines for more to-dos once the button is clicked "+"
 document.querySelector("#to-do-list-button").addEventListener('click', (event) => {
+    
     const toDoList = document.querySelector("#to-do-list");
+    const toDoContainer = document.createElement('div')
+    toDoContainer.setAttribute('class', 'to-do-container')
     const newToDoItem = document.createElement("input");
     newToDoItem.setAttribute('class', 'to-do-list-item');
-    // toDoList.appendChild(newToDoItem);
+    toDoList.appendChild(toDoContainer);
+    toDoContainer.appendChild(newToDoItem)
     console.log(newToDoItem)
 
     //need something to prevent lines being blank when saving the trip
 
     // this is to remove an input box if it's not needed
     const removeButton = document.createElement("button");
+    toDoContainer.appendChild(removeButton)
     removeButton.innerHTML = "- remove";
     removeButton.setAttribute('class', 'remove-to-do');
-    // toDoList.apppendChild(removeButton);
-    console.log(removeButton)
-    toDoList.appendChild(newToDoItem, removeButton); //placed this here bc appending the input box and button seperately was giving me an error. "TypeError: toDoList.apppendChild is not a function at HTMLButtonElement."
 
-   
+    removeButton.addEventListener('click', (event) => {
+        console.log('button clicked')
+        toDoList.removeChild(toDoContainer)
+    }) 
+
+
     // Maybe this can be something that will show when reviewing the to-do list after saving it
     // const checkbox = document.createElement("input");
     // checkbox.type = 'checkbox';
