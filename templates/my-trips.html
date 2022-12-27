@@ -58,24 +58,24 @@
             {% endfor %}
         </select>
         <br><br>
-    <button type="button" id="view-trip-details">View Trip Details</input>
+        <button type="button" id="view-trip-details">View Trip Details</input>
     </form>
     </p>
 </div>
 <div class="container">
     <h3> View Future Trips </h3>
     <p>
-    <form>
-        <select for="future_trip_list">
-    
-        {% for trip in future_trip_list %}
+    <form action="/update" method="POST">
+        <select for="future_trip_list" name="future_trip">
 
-        <option>{{ trip.to_dest }} {{ trip.leave_date }}</option>
-    {% endfor %}
-    </select>
-    <br><br>
-    <button type="button" id="view-trip-details">View Trip Details</input>
+            {% for trip in future_trip_list %}
 
+            <option value="{{trip.trip_id}}">{{ trip.to_dest }} {{ trip.leave_date }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <button type="submit" id="view-trip-details">View Trip Details / Edit Trip</button>
+    </form>
     </p>
 </div>
 <script src="/static/JS/my-trips.js"></script>

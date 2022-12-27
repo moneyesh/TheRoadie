@@ -35,6 +35,16 @@ def get_trips_by_userid(user_id):
 
     return Trip.query.filter(Trip.user_id == user_id).all()
 
+def get_trips_by_tripid(trip_id):
+
+    return Trip.query.get(trip_id) 
+
+#update trip details
+def update_trip(trip_id):
+    
+                
+    return Trip.query.get(trip_id)
+
 
 # Task and List Functions
 def create_to_do(list, to_do, completed=False):
@@ -50,4 +60,7 @@ def create_list(trip, creation_date, list_name):
 
     return list
 
+def find_to_do_by_id(id):
+
+    return ToDo.query.get(id)
 

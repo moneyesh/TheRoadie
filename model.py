@@ -31,7 +31,7 @@ class ToDo(db.Model):
     list = db.relationship("List", back_populates='to_dos')
 
     def __repr__(self):
-        return f'<Task Table: task_id={self.task_id}, task={self.task}>'
+        return f'<ToDo Table: to_do_id={self.task_id}, to_do={self.to_do}>'
 
 
 class List(db.Model):

@@ -38,4 +38,8 @@
     margin-inline: 0.5em;
 }
 
+.update_to_do {
+    display: flex;
+    margin-bottom: 0.5em;
+}
 

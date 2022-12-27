@@ -74,7 +74,7 @@ def dashboard():
     user = crud.get_user_by_email(logged_in_email)
     trips = crud.get_trips_by_userid(user.user_id)
     soonest_trip = ""
-    countdown = None
+    countdown = None #TODO take off the minutes 
     for trip in trips:
         
         if trip.leave_date > date.today():
@@ -84,7 +84,8 @@ def dashboard():
                 soonest_trip = trip.to_dest
     # print(soonest_trip)
     # print(countdown)
-    #TODO: Test on 12/23 that next trip is in countdown
+    #TODO: Test on 12/23 that next trip is in countdown -- 12/23: appears to be working. Need to check again on 12/31 that a new trip shows
+    #TODO fix count down timer to either have the time or remove it
     return render_template("user_dashboard.html", trips=trips, user=user, soonest_trip=soonest_trip, countdown=countdown)
 
 
@@ -94,13 +95,13 @@ def map():
     return render_template("map.html", FRONT_GOOGLE=FRONT_GOOGLE)
 
 
-@app.route("/map", methods=["POST"])
-def map_post():
-    # grabs the information the user puts in for their destination to post to google
-    from_dest = request.json.get('from')
-    to_dest = request.json.get('to')
+# @app.route("/map", methods=["POST"])
+# def map_post():
+#     # grabs the information the user puts in for their destination to post to google
+#     from_dest = request.json.get('from')
+#     to_dest = request.json.get('to')
 
-    return redirect('/map')
+#     return redirect('/map')
 
 
 @app.route("/map/waypoints")
@@ -169,7 +170,7 @@ def create_my_trips():
     to_do = request.json.get('to_do_list_items')
     list_name = request.json.get('list_name')
     print(to_do)
-    logged_in_email = session.get("user_email")
+    logged_in_email = session.get('user_email')
     user = crud.get_user_by_email(logged_in_email)
 
     create_trip = crud.create_trip(leave_date, return_date, to_dest, from_dest, user)
@@ -184,35 +185,55 @@ def create_my_trips():
     return redirect ("/my-trips")
 
 
-# @app.route("/my-trips/upcoming-trips") #TODO: combine with the my trips
-# def upcoming_trip():
+@app.route("/update", methods=['POST'])
+def update():
+    upcoming_trip = request.form.get("future_trip")
+    trip = crud.get_trips_by_tripid(upcoming_trip)
+    # trip_id = trip.trip_id
+    
+    return render_template('update-trip.html', trip=trip)
 
-#     logged_in_email = session.get("user_email")
-#     user = crud.get_user_by_email(logged_in_email)
-#     trips = crud.get_trips_by_userid(user.user_id)
+@app.route("/update/<trip_id>", methods=['POST'])
+def update_trip(trip_id):
+    trip = crud.get_trips_by_tripid(trip_id)
+    to_dest_to_update = request.form.get("to")
+    from_dest_to_update = request.form.get("from")
+    leave_date_to_update = request.form.get("depart_date")
+    return_date_to_update = request.form.get("return_date")
+    trip.to_dest = to_dest_to_update
+    trip.from_dest = from_dest_to_update
+    trip.leave_date = leave_date_to_update
+    trip.return_date = return_date_to_update
 
-#     trip_list = []
-#     today = date.today()
-#     print(today)
-#     for trip in trips:
-#         if trip.leave_date > today:
-#             print(trip)
-#             trip_list.append(trip)
-           
+    db.session.commit()
+    flash("Your trip has been updated successfully!")
+    return redirect('/my-trips')
 
-#     return render_template("upcoming_trips.html", trips=trip_list)
+@app.route("/update/to-do", methods=['POST'])
+def update_to_do():
 
+    id = request.json["task_id"]
+    name = request.json["task"]
+    to_do = crud.find_to_do_by_id(id)
+    print(to_do)
+    to_do.to_do = name
+    db.session.commit()
+    return "Success"
+
+@app.route("/remove/to-do", methods=['POST'])
+def remove_to_do():
+
+    id = request.json["task_id"]
+    to_do = crud.find_to_do_by_id(id)
+    print(to_do)
+    db.session.delete(to_do)
+    db.session.commit()
+    return "Item Removed"
 
 @app.route("/gas-calc")
 def gas():
 
     return render_template("gas-calc.html")
-
-
-# @app.route("/to-do")
-# def to_do():
-# #returns the to-do template   
-#     return render_template("to-do.html")
 
 
 

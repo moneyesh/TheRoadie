@@ -5,8 +5,8 @@
 {% block body %}
 <div class="map">
     <div>
-        <h1> Directions </h1>
-        <p> Please enter your from and to destination </p>
+        <h1> Route and Weather </h1>
+        <p> Please enter your from and to destination.</p>
         <form id="map-route" action="#"> <!--check if this is right-->
             <div class="form-group">
                 <label for="from"> From: </label>
@@ -14,7 +14,7 @@
                     <input type="text" id="from" placeholder="Origin">
                 </div>
             </div>
-
+            <br>
             <div class="form-group">
                 <label for="to"> To: </label>
                 <div>
@@ -22,16 +22,17 @@
                 </div>
             </div>
             <p>
-            <button type="submit" id="calc-route"> Calculate Route </button>
-            </p>           
+                <button type="submit" id="calc-route"> Calculate Route </button>
+            </p>
         </form>
-        <input type="text" id="distance" readonly ></input>
-        
+        <label for="distnce">Distance (one way): </label>
+        <input type="text" id="distance" readonly></input>
+
     </div>
 </div>
 <section class="googleMap">
 
-    <div id="googleMap"></div> 
+    <div id="googleMap"></div>
 
     <div id="output"></div>
 </section>
@@ -39,9 +40,7 @@
 
 
 <script defer src="/static/JS/map.js"></script>
-<script
-defer
-src="https://maps.googleapis.com/maps/api/js?key={{ FRONT_GOOGLE }}&callback=initMap">
+<script defer src="https://maps.googleapis.com/maps/api/js?key={{ FRONT_GOOGLE }}&callback=initMap">
 </script>
 
 

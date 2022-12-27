@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title%} Trip Details {% endblock %}
+
+{% block body %}
+<h1> Trip Details </h1>
+
+<form method="POST" action="/update/{{ trip.trip_id }}" id="update_trip">
+    <div>
+        <label> Leaving from: </label>
+        <input type="text" id="from" name="from" value="{{ trip.from_dest }}"></input>
+
+        <label> Going to: </label>
+        <input type="text" id="to" name="to" value="{{ trip.to_dest }}"></input>
+    </div>
+    <br />
+    <div>
+        <label> Leave date: </label>
+        <input type="date" id="leave_date" name="depart_date" value="{{ trip.leave_date }}"></input>
+
+        <label> Return date: </label>
+        <input type="date" id="return_date" name="return_date" value="{{ trip.return_date }}"></input>
+
+    </div>
+    <br />
+    <div>
+        <button type="submit" id="create-trip">Update Trip</button>
+
+    </div>
+
+</form>
+<div>
+    <p>{% for list in trip.lists %}</p>
+    {% for to_do in list.to_dos %}
+<div id="container-{{ to_do.task_id }}" class="to-do-container">
+    <input value="{{ to_do.to_do }}" class="update_to_do" name="{{ to_do.task_id }}"></input>
+    <button id="{{ to_do.task_id }}" onclick="updateToDo(id)">Update To-Do</button>
+    <button name="{{ to_do.task_id }}" onclick="removeToDo(name)">- Remove</button>
+</div>
+    <button type="button" id="to-do-list-button">+ Add a to-do</button>
+    #TODO create the option to add a to do item on the update page
+
+    {% endfor %}
+    {% endfor %}
+
+</div>
+<script src="/static/JS/my-trips.js"></script>
+{% endblock %}
