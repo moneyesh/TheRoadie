@@ -22,26 +22,31 @@
 
     </div>
     <br />
-    <div>
-        <button type="submit" id="create-trip">Update Trip</button>
 
-    </div>
 
-</form>
+
+    
+
 <div>
     <p>{% for list in trip.lists %}</p>
     {% for to_do in list.to_dos %}
-<div id="container-{{ to_do.task_id }}" class="to-do-container">
-    <input value="{{ to_do.to_do }}" class="update_to_do" name="{{ to_do.task_id }}"></input>
-    <button id="{{ to_do.task_id }}" onclick="updateToDo(id)">Update To-Do</button>
-    <button name="{{ to_do.task_id }}" onclick="removeToDo(name)">- Remove</button>
-</div>
-    <button type="button" id="to-do-list-button">+ Add a to-do</button>
-    #TODO create the option to add a to do item on the update page
-
+    <div id="container-{{ to_do.task_id }}" class="to-do-container">
+        <input value="{{ to_do.to_do }}" class="update_to_do" name="{{ to_do.task_id }}"></input>
+        <button id="{{ to_do.task_id }}" onclick="updateToDo(id)">Update To-Do</button>
+        <button name="{{ to_do.task_id }}" onclick="removeToDo(name)">- Remove</button>
     {% endfor %}
     {% endfor %}
+    </div>
 
 </div>
-<script src="/static/JS/my-trips.js"></script>
+
+<div id="updated-to-do" class="add-new-to-do-container">
+<!-- this is where the add new items show up on the website when add to do is clicked -->
+</div>
+<button type="button" id="add-to-do-button">+ Add a to-do</button>
+<!-- TODO create a remove button in case they no longer need the additional line -->
+
+</form>
+
+<script src="/static/JS/update-trip.js"></script>
 {% endblock %}

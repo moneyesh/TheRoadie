@@ -43,3 +43,10 @@
     margin-bottom: 0.5em;
 }
 
+.add-new-to-do-container {
+    display: flex;
+    flex-direction: column;
+    height:auto;
+    width: 20%;
+    gap: 5px;
+}

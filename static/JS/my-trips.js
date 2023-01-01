@@ -2,6 +2,7 @@
 const headers = {
     'Content-Type': 'application/json'
 }
+
 document.querySelector("#to-do-list-button").addEventListener('click', (event) => {
     
     const toDoList = document.querySelector("#to-do-list");
@@ -40,32 +41,7 @@ document.querySelector("#to-do-list-button").addEventListener('click', (event) =
 //      console.log(all_todos)
 // });
 
-function updateToDo(to_do_id) {
-    console.log(to_do_id)
-    const task = document.getElementsByName(to_do_id)[0].value;
-    let body = {task_id:to_do_id, task:task};
-    fetch(`/update/to-do`, {
-        method:'POST',
-        body:JSON.stringify(body),
-        headers:headers
-    })
-    .then(response => response.text())
-    .then(data => console.log(data))
-    
-}
 
-function removeToDo(to_do_id) {
-    console.log(to_do_id)
-    let body = {task_id:to_do_id};
-    fetch(`/remove/to-do`, {
-        method:'POST',
-        body:JSON.stringify(body),
-        headers:headers
-    })
-    .then(response => response.text())
-    .then(data => console.log(data))
-    document.getElementById("container-"+to_do_id).remove();
-}
 
     // Maybe this can be something that will show when reviewing the to-do list after saving it
     // const checkbox = document.createElement("input");
@@ -75,8 +51,6 @@ function removeToDo(to_do_id) {
     // checkbox.value = 'completed';
     // toDoList.appendChild(checkbox);
     // console.log(checkbox)
-
-
 
 document.querySelector("#create-trip").addEventListener('submit', (event) => {
     event.preventDefault();
@@ -106,7 +80,7 @@ document.querySelector("#create-trip").addEventListener('submit', (event) => {
     })
     .then((response) => console.log(response))
     ;
-
+//TODO the page should show some indication that a trip was created and should show in the future trips list
 });
 
 // this click event removes the hidden class on the to-do-form  div which lets users create a list of to-dos for their trip  

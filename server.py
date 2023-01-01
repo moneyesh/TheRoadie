@@ -74,18 +74,16 @@ def dashboard():
     user = crud.get_user_by_email(logged_in_email)
     trips = crud.get_trips_by_userid(user.user_id)
     soonest_trip = ""
-    countdown = None #TODO take off the minutes 
-    for trip in trips:
-        
+    # countdown = None #TODO take off the minutes 
+    for trip in trips:        
         if trip.leave_date > date.today():
-            trip_countdown = trip.leave_date - date.today()
-            if countdown is None or trip_countdown < countdown:
-                countdown = trip_countdown
-                soonest_trip = trip.to_dest
+            countdown = trip.leave_date - date.today()
+            # if countdown is None or trip_countdown < countdown:
+            #     countdown = trip_countdown
+            soonest_trip = trip.to_dest
     # print(soonest_trip)
     # print(countdown)
     #TODO: Test on 12/23 that next trip is in countdown -- 12/23: appears to be working. Need to check again on 12/31 that a new trip shows
-    #TODO fix count down timer to either have the time or remove it
     return render_template("user_dashboard.html", trips=trips, user=user, soonest_trip=soonest_trip, countdown=countdown)
 
 
@@ -151,9 +149,9 @@ def my_trips():
     
     for trip in trips:
         if trip.return_date < today:
-            print(trip)
+            # print(trip)
             past_trip_list.append(trip)
-            print(past_trip_list)
+            # print(past_trip_list)
         elif trip.leave_date > today:
             future_trip_list.append(trip)    
         
@@ -169,7 +167,7 @@ def create_my_trips():
     from_dest = request.json.get('from')
     to_do = request.json.get('to_do_list_items')
     list_name = request.json.get('list_name')
-    print(to_do)
+    # print(to_do)
     logged_in_email = session.get('user_email')
     user = crud.get_user_by_email(logged_in_email)
 
@@ -206,8 +204,8 @@ def update_trip(trip_id):
     trip.return_date = return_date_to_update
 
     db.session.commit()
-    flash("Your trip has been updated successfully!")
-    return redirect('/my-trips')
+    flash("Your trip has been updated successfully!") #TODO flash isn't working
+    # return redirect('/my-trips')
 
 @app.route("/update/to-do", methods=['POST'])
 def update_to_do():
@@ -215,7 +213,7 @@ def update_to_do():
     id = request.json["task_id"]
     name = request.json["task"]
     to_do = crud.find_to_do_by_id(id)
-    print(to_do)
+    # print(to_do)
     to_do.to_do = name
     db.session.commit()
     return "Success"
@@ -229,6 +227,24 @@ def remove_to_do():
     db.session.delete(to_do)
     db.session.commit()
     return "Item Removed"
+
+@app.route("/add/new-to-do", methods=["POST"])
+def add_new_to_do():
+    id = request.json["list_id"]
+    print(id)
+    item_added = request.json.get('new-updated-to-do-item')
+    # new_to_do_created = crud.create_to_do(item_added)
+    existing_list = crud.get_list_by_id(id)
+    print('***List:' , existing_list)
+    
+    for item in item_added:
+        print('***Item:',item)
+        create_to_do = crud.create_to_do(existing_list, item)
+        db.session.add(create_to_do)
+    db.session.commit()
+    flash("Added successfully!")
+#TODO the new add to do button isn't working. It's not saving to the DB
+
 
 @app.route("/gas-calc")
 def gas():

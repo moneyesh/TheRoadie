@@ -64,3 +64,7 @@ def find_to_do_by_id(id):
 
     return ToDo.query.get(id)
 
+def get_list_by_id(id):
+
+    return List.query.get(id)
+
