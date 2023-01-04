@@ -21,8 +21,7 @@
         <input type="date" id="return_date" name="return_date" value="{{ trip.return_date }}"></input>
 
     </div>
-    <button type="submit" name="save_trip">Save Trip</button>
-    </form>
+
     <br/>
 
     <div id="updated-to-do" class="add-new-to-do-container">
@@ -30,7 +29,7 @@
            {% for to_do in list.to_dos %}
         <div id="container-{{ to_do.task_id }}" class="to-do-container">
             <input value="{{ to_do.to_do }}" class="update_to_do" name="{{ to_do.task_id }}"></input>
-            <button name="{{ to_do.task_id }}" onclick="updateToDo(name)">Update</button>
+            <button name="{{ to_do.task_id }}" onclick="updateToDo(event, name)">Update</button>
             <button name="{{ to_do.task_id }}" onclick="removeToDo(name)">Remove</button>
         </div>
         {% endfor %}
@@ -45,7 +44,8 @@
     {% endfor %}
     <br>
     <br>
-
+    <button type="submit" name="save_trip">Save Trip</button>
+    </form>
 
 <script src="/static/JS/update-trip.js"></script>
 {% endblock %}

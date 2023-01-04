@@ -26,17 +26,12 @@ document.querySelector("#to-do-list-button").addEventListener('click', (event) =
     removeButton.addEventListener('click', (event) => {
         console.log('button clicked')
         toDoList.removeChild(toDoContainer)
+
     }); 
+
 });   
 
-    // Maybe this can be something that will show when reviewing the to-do list after saving it
-    // const checkbox = document.createElement("input");
-    // checkbox.type = 'checkbox';
-    // checkbox.id = 'completed_chkbox';
-    // checkbox.name = 'completed_chkbox';
-    // checkbox.value = 'completed';
-    // toDoList.appendChild(checkbox);
-    // console.log(checkbox)
+
 
 document.querySelector("#create-trip").addEventListener('submit', (event) => {
     event.preventDefault();
