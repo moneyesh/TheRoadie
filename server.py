@@ -5,7 +5,7 @@ import json
 from jinja2 import StrictUndefined
 import os
 import requests
-from datetime import date, datetime
+from datetime import date
 
 app = Flask(__name__)
 
@@ -16,7 +16,7 @@ FRONT_GOOGLE = os.environ['FRONT_GOOGLE']
 BACK_GOOGLE = os.environ['BACK_GOOGLE']
 MY_WEATHER = os.environ['MY_WEATHER']
 
-
+# REGISTRATION AND LOGIN
 @app.route("/")
 def homepage():
 
@@ -24,6 +24,7 @@ def homepage():
 
 
 @app.route("/register", methods=["POST"])
+#user registration section
 def register_user():
     # For creating a new user
     fname = request.form.get("first name")
@@ -49,8 +50,8 @@ def register_user():
 
 
 @app.route("/login", methods=["POST"])
+#user login section
 def user_login():
-    # this is for users logging in
     email = request.form.get("email")
     password = request.form.get("password")
 
@@ -68,6 +69,7 @@ def user_login():
 
 
 @app.route("/dashboard")
+#user dashboard
 def dashboard():
     # checks the users logged in email and displays the dashboard with their info.
     logged_in_email = session.get("user_email")
@@ -77,7 +79,8 @@ def dashboard():
     countdown = None #TODO take off the minutes 
     for trip in trips:        
         if trip.leave_date > date.today():
-            trip_countdown = trip.leave_date - date.today()
+            trip_countdown = trip.leave_date - date.today() #creates a time delta object (days=0, seconds=0, microseconds=0, milliseconds=0, minutes=0, hours=0, weeks=0)
+            print(trip_countdown)
             if countdown is None or trip_countdown < countdown:
                 countdown = trip_countdown
             soonest_trip = trip.to_dest
@@ -86,6 +89,7 @@ def dashboard():
     return render_template("user_dashboard.html", trips=trips, user=user, soonest_trip=soonest_trip, countdown=countdown)
 
 
+#MAP
 @app.route("/map")
 def map():
     # displays the map page
@@ -110,8 +114,6 @@ def get_waypoints():
     google_response = requests.get(
         f"https://maps.googleapis.com/maps/api/directions/json?destination={to_dest}&origin={from_dest}&key={BACK_GOOGLE}").json()
     # weather_response = requests.get(f'http://api.weatherapi.com/v1/current.json?key={MY_WEATHER}&q=Atlanta&aqi=no').json()
-
-
     # print('*******', google_response)
     leg = google_response['routes'][0]['legs'][0]
     waypoints = [leg['start_location']]
@@ -119,10 +121,10 @@ def get_waypoints():
     distance = [leg['distance']]
     print('!!!DIST!!!!',distance)
    
-    
     for step in leg['steps']:
         waypoints.append(step['end_location'])
     return jsonify(waypoints, distance)
+
 
 @app.route("/waypoint-weather")
 def way_weather():
@@ -135,6 +137,8 @@ def way_weather():
     forecast = {"forecast_icon": forecast_icon, "forecast_text": forecast_text}
     return jsonify(forecast)
 
+
+# TRIPS
 @app.route("/my-trips")
 def my_trips():
  # this will populate the trips on the past trips page. need to figure out how to expand the trip to show more details or populate the details some where on the page
@@ -156,8 +160,9 @@ def my_trips():
         
     return render_template("my-trips.html", trips=trips, future_trip_list=future_trip_list, past_trip_list=past_trip_list)
 
-# Create new trips
+
 @app.route("/my-trips/create-trip", methods=["POST"])
+# Create new trips
 def create_my_trips():
     leave_date = request.json.get('depart_date')
     return_date = request.json.get('return_date')
@@ -183,6 +188,7 @@ def create_my_trips():
 
 
 @app.route("/update", methods=['POST'])
+#update trip page
 def update():
     upcoming_trip = request.form.get("future_trip")
     trip = crud.get_trips_by_tripid(upcoming_trip)
@@ -191,7 +197,7 @@ def update():
     return render_template('update-trip.html', trip=trip)
 
 @app.route("/update/<trip_id>", methods=['POST'])
-# this route is for updating the trip details
+# this route is for updating the trip details on the update page
 def update_trip(trip_id):
     trip = crud.get_trips_by_tripid(trip_id)
     to_dest_to_update = request.form.get("to")
@@ -208,7 +214,7 @@ def update_trip(trip_id):
     return redirect('/my-trips')
 
 @app.route("/update/to-do", methods=['POST'])
-# this route is for updating a to do
+#update an exisisting to-do from trip
 def update_to_do():
 
     id = request.json["task_id"]
@@ -220,6 +226,7 @@ def update_to_do():
     return "Success"
 
 @app.route("/remove/to-do", methods=['POST'])
+#remove an exisisting to-do from trip
 def remove_to_do():
 
     id = request.json["task_id"]
@@ -230,6 +237,7 @@ def remove_to_do():
     return "Item Removed"
 
 @app.route("/add/new-to-do", methods=["POST"])
+#add a to-do to existing trip
 def add_new_to_do():
     id = request.json["list_id"]
     print(id)
@@ -245,6 +253,7 @@ def add_new_to_do():
 # TODO the new add to do button isn't working. It's not saving to the DB
 
 
+#gas calculator
 @app.route("/gas-calc")
 def gas():
 
