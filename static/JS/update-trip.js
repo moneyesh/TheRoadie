@@ -29,19 +29,46 @@ function removeToDo(to_do_id) {
     document.getElementById("container-"+to_do_id).remove();
 }
 
-document.querySelector("#add-to-do-button").addEventListener('click', (event) => {
-    
-    const updatedToDoList = document.querySelector("#updated-to-do");
-    // const toDoContainer = document.createElement('div')
-    // toDoContainer.setAttribute('class', 'to-do-container')
-    const newToDoItem = document.createElement("input");
-    newToDoItem.setAttribute('required','')
-    newToDoItem.setAttribute('class', 'new-updated-to-do-item');
-    updatedToDoList.appendChild(newToDoItem);
-    console.log(newToDoItem)
-
-});
 
 function addToDo(list_id) {
     console.log(list_id)
+    const newUpdatedToDoItem = document.getElementById('new-updated-to-do-item');
+    let body = {list_id:list_id, new_updated_to_do_item:newUpdatedToDoItem.value};
+    newUpdatedToDoItem.value = " "
+    fetch(`/add/new-to-do`, {
+        method:'POST',
+        body:JSON.stringify(body),
+        headers:headers
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        const updatedToDoList = document.querySelector("#updated-to-do");
+        const containerDiv = document.createElement("div");
+        containerDiv.setAttribute('id', `container-${data.task_id}`);
+        containerDiv.setAttribute('class', 'to-do-container');
+        updatedToDoList.appendChild(containerDiv);
+
+        const newToDoItem = document.createElement("input");
+        newToDoItem.setAttribute('required','')
+        newToDoItem.setAttribute('class', 'update_to_do');
+        newToDoItem.setAttribute('name', data.task_id);
+        newToDoItem.value = data.to_do
+        containerDiv.appendChild(newToDoItem)
+        console.log(newToDoItem)
+
+        const newUpdateButton = document.createElement('button');
+        newUpdateButton.setAttribute('name', data.task_id);
+        newUpdateButton.setAttribute('onclick', 'updateToDo(name)');
+        newUpdateButton.innerHTML = "Update";
+        containerDiv.appendChild(newUpdateButton);
+
+
+        const newRemoveButton = document.createElement('button');
+        newRemoveButton.setAttribute('name', data.task_id);
+        newRemoveButton.setAttribute('onclick', 'removeToDo(name)');
+        newRemoveButton.innerHTML = "Remove"
+        containerDiv.appendChild(newRemoveButton);
+     })
+
 }

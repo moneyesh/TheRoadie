@@ -22,9 +22,9 @@
         <input type="date" id="return_date" name="return_date" placeholder="mm/dd/yyyy"></input>
 
     </div>
-    <br />
+    <br>
 
-    <br />
+    <br>
     <div id="to-do-form" class="hidden">
         <label> List Name: </label>
         <input type="text" id="list-name" placeholder="ex: dad's packing list, snacks, prep the car"></input>
@@ -38,14 +38,14 @@
         <button type="button" id="create_list" onclick="this.style.display='none'">Create a To-Do List</button>
     </div>
     <br />
-    <div>
-        <button type="submit" id="create-trip">Save Trip</button>
-    </div>
+
+       <button type="submit" name="save-trip-button">Save Trip</button>
+    
 </form>
 </p>
 
 
-<br />
+<br/>
 <div class="container">
     <h3>View Past Trips</h3>
     <p>
@@ -79,4 +79,5 @@
     </p>
 </div>
 <script src="/static/JS/my-trips.js"></script>
+
 {% endblock %}

@@ -27,21 +27,7 @@ document.querySelector("#to-do-list-button").addEventListener('click', (event) =
         console.log('button clicked')
         toDoList.removeChild(toDoContainer)
     }); 
-});
-    
-// document.querySelector("#update_trip").addEventListener('submit', (evt) => {
-//     evt.preventDefault()
-//     const destination = document.querySelector('#to').value
-//     const origin = document.querySelector('#from').value
-//     const return_date = document.querySelector('#return_date').value
-//     const leave_date = document.querySelector('#leave_date').value
-//     const all_todos = document.querySelectorAll('.update_to_do').map(el => {
-//         return {to_do_id:el.name, to_do_text:el.value}
-//      });
-//      console.log(all_todos)
-// });
-
-
+});   
 
     // Maybe this can be something that will show when reviewing the to-do list after saving it
     // const checkbox = document.createElement("input");
@@ -78,7 +64,11 @@ document.querySelector("#create-trip").addEventListener('submit', (event) => {
         body:JSON.stringify(data),
         headers:{'Content-Type': 'application/json'}
     })
-    .then((response) => console.log(response))
+    .then(response => response.json())
+    .then((response) => {
+        console.log(response)
+        window.location.reload()
+    });
     ;
 //TODO the page should show some indication that a trip was created and should show in the future trips list
 });
