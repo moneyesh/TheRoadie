@@ -1,6 +1,7 @@
 "use strict";
 
 function initMap() {
+    console.log("INIT MAP")
     const myLocation = { lat: 33.76298, lng: -84.39502 };
     const directionsRenderer = new google.maps.DirectionsRenderer();
 
@@ -15,6 +16,7 @@ function initMap() {
     );
 
     directionsRenderer.setMap(map);
+    console.log("MAP DRAWN")
 }
 
 function calcRoute(event) {

@@ -1,6 +1,12 @@
 #googleMap {
-    width: 80%;
-    height: 80%;
+    width: 600px;
+    height: 600px;
+    margin: 20px auto;
+}
+
+#hotelMap {
+    width: 500px;
+    height: 500px;
     margin: 20px auto;
 }
 

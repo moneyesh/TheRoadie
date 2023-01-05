@@ -47,22 +47,6 @@
 
 <br/>
 <div class="container">
-    <h3>View Past Trips</h3>
-    <p>
-    <form action="/view-trip">
-        <select for="past_trip_list">
-            {% for trip in past_trip_list %}
-
-            <option>{{ trip.to_dest }} {{ trip.leave_date }}</option>
-
-            {% endfor %}
-        </select>
-        <br><br>
-        <button type="button" id="view-trip-details">View Trip Details</input>
-    </form>
-    </p>
-</div>
-<div class="container">
     <h3> View Future Trips </h3>
     <p>
     <form action="/update" method="POST">
@@ -70,16 +54,33 @@
 
             {% for trip in future_trip_list %}
 
-            <option value="{{trip.trip_id}}">{{ trip.to_dest }} {{ trip.leave_date }}</option>
+            <option value="{{trip.trip_id}}"> {{ trip.leave_date }} {{ trip.to_dest }}</option>
             {% endfor %}
         </select>
         <br><br>
         <button type="submit" id="view-trip-details">View Trip Details / Edit Trip</button>
-
     </form>
-        <!-- <button action="/view-trip" type="submit" id="trip-details">View Trip Details</button> -->
+        
     </p>
 </div>
+<br>
+<div class="container">
+    <h3>Past Trips</h3>
+    <p>
+    <form>
+        <ul for="past_trip_list">
+            {% for trip in past_trip_list %}
+
+            <li>{{ trip.leave_date }} {{ trip.to_dest }} </li>
+
+            {% endfor %}
+        </ul>
+        <br><br>
+        <!-- <button type="button" id="view-trip-details">View Trip Details</input> -->
+    </form>
+    </p>
+</div>
+
 <script src="/static/JS/my-trips.js"></script>
 
 {% endblock %}

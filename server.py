@@ -15,6 +15,7 @@ app.jinja_env.undefined = StrictUndefined
 FRONT_GOOGLE = os.environ['FRONT_GOOGLE']
 BACK_GOOGLE = os.environ['BACK_GOOGLE']
 MY_WEATHER = os.environ['MY_WEATHER']
+HOTEL_GOOGLE = os.environ['HOTEL_GOOGLE']
 
 # REGISTRATION AND LOGIN
 @app.route("/")
@@ -249,28 +250,15 @@ def add_new_to_do():
     return jsonify({'task_id': create_to_do.task_id, 'to_do': create_to_do.to_do})
 
 
-# @app.route("/view-trip")
-# def view_trip():
-#     upcoming_trip = request.form.get("past_trip")
-#     trip = crud.get_trips_by_tripid(upcoming_trip)
-#     print(upcoming_trip)
-#     # to_dest= request.form.get("to")
-#     # from_dest = request.form.get("from")
-#     # leave_date = request.form.get("depart_date")
-#     # return_date = request.form.get("return_date")
-#     # trip.to_dest = to_dest
-#     # trip.from_dest = from_dest
-#     # trip.leave_date = leave_date
-#     # trip.return_date = return_date
-#     return render_template("view_trip.html", trip=trip)
-
 # gas calculator
 @app.route("/gas-calc")
 def gas():
 
     return render_template("gas-calc.html")
 
-
+@app.route("/hotels")
+def hotels():
+    return render_template("hotels.html", HOTEL_GOOGLE=HOTEL_GOOGLE)
 
 if __name__ == "__main__":
     connect_to_db(app)

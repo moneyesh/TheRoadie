@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <title>Place Autocomplete Hotel Search</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/style/style.css" />
+    <script type="module" src="/static/JS/hotels.js"></script>
+  </head>
+  <body>
+    <div class="hotel-search">
+      <div id="findhotels">Find hotels in:</div>
+
+      <div id="locationField">
+        <input id="autocomplete" placeholder="Enter a city" type="text" />
+      </div>
+
+      <div id="controls">
+        <select id="country">
+          <option value="us" selected>U.S.A.</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="hotelMap"></div>
+
+    <div id="listing">
+      <table id="resultsTable">
+        <tbody id="results"></tbody>
+      </table>
+    </div>
+
+    <div style="display: none">
+      <div id="info-content">
+        <table>
+          <tr id="iw-url-row" class="iw_table_row">
+            <td id="iw-icon" class="iw_table_icon"></td>
+            <td id="iw-url"></td>
+          </tr>
+          <tr id="iw-address-row" class="iw_table_row">
+            <td class="iw_attribute_name">Address:</td>
+            <td id="iw-address"></td>
+          </tr>
+          <tr id="iw-phone-row" class="iw_table_row">
+            <td class="iw_attribute_name">Telephone:</td>
+            <td id="iw-phone"></td>
+          </tr>
+          <tr id="iw-rating-row" class="iw_table_row">
+            <td class="iw_attribute_name">Rating:</td>
+            <td id="iw-rating"></td>
+          </tr>
+          <tr id="iw-website-row" class="iw_table_row">
+            <td class="iw_attribute_name">Website:</td>
+            <td id="iw-website"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <!-- <script defer src="https://maps.googleapis.com/maps/api/js?key={{ HOTEL_GOOGLE }}&callback=initMap&libraries=places&v=weekly"></script> -->
+    
+    </script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key={{ HOTEL_GOOGLE }}&libraries=places&callback=initMap"></script>
+  </body>
+  <script async src="https://maps.googleapis.com/maps/api/js?key={{ HOTEL_GOOGLE }}&libraries=places&callback=initAutocomplete"></script>
+</html>
