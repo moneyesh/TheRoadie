@@ -49,7 +49,7 @@
 <div class="container">
     <h3>View Past Trips</h3>
     <p>
-    <form>
+    <form action="/view-trip">
         <select for="past_trip_list">
             {% for trip in past_trip_list %}
 
@@ -75,7 +75,9 @@
         </select>
         <br><br>
         <button type="submit" id="view-trip-details">View Trip Details / Edit Trip</button>
+
     </form>
+        <!-- <button action="/view-trip" type="submit" id="trip-details">View Trip Details</button> -->
     </p>
 </div>
 <script src="/static/JS/my-trips.js"></script>

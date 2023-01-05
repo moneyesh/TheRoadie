@@ -54,7 +54,7 @@ function calcRoute(event) {
         .then((response) => response.json())
         .then((waypoints) => {
             console.log(waypoints)
-            //TODO:start adding markers here
+            //adding markers here
             markers(map,waypoints[0])
             console.log(waypoints[1][0].text)
             document.querySelector('#distance').value = waypoints[1][0].text

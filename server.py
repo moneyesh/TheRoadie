@@ -76,7 +76,7 @@ def dashboard():
     user = crud.get_user_by_email(logged_in_email)
     trips = crud.get_trips_by_userid(user.user_id)
     soonest_trip = ""
-    countdown = None #TODO take off the minutes 
+    countdown = None 
     for trip in trips:        
         if trip.leave_date > date.today():
             trip_countdown = trip.leave_date - date.today() #creates a time delta object (days=0, seconds=0, microseconds=0, milliseconds=0, minutes=0, hours=0, weeks=0)
@@ -89,20 +89,17 @@ def dashboard():
     return render_template("user_dashboard.html", trips=trips, user=user, soonest_trip=soonest_trip, countdown=countdown)
 
 
+@app.route("/logout")
+def user_logout():
+    session.pop("user_id", None)
+    flash("You have successfully logged out")
+    return redirect("/")
+
 #MAP
 @app.route("/map")
 def map():
     # displays the map page
     return render_template("map.html", FRONT_GOOGLE=FRONT_GOOGLE)
-
-
-# @app.route("/map", methods=["POST"])
-# def map_post():
-#     # grabs the information the user puts in for their destination to post to google
-#     from_dest = request.json.get('from')
-#     to_dest = request.json.get('to')
-
-#     return redirect('/map')
 
 
 @app.route("/map/waypoints")
@@ -141,7 +138,7 @@ def way_weather():
 # TRIPS
 @app.route("/my-trips")
 def my_trips():
- # this will populate the trips on the past trips page. need to figure out how to expand the trip to show more details or populate the details some where on the page
+ # this will populate the trips on the past trips page.
     logged_in_email = session.get("user_email")
     user = crud.get_user_by_email(logged_in_email)
     trips = crud.get_trips_by_userid(user.user_id)
@@ -183,7 +180,7 @@ def create_my_trips():
         create_to_do = crud.create_to_do(create_list, to_do_item)
         db.session.add(create_to_do)
     db.session.commit()
-    flash("Trip created successfully!") #TODO flash isn't showing
+    flash("Trip created successfully!") 
     return jsonify("Trip created successfully!")
 
 
@@ -250,10 +247,24 @@ def add_new_to_do():
     db.session.add(create_to_do)
     db.session.commit()
     return jsonify({'task_id': create_to_do.task_id, 'to_do': create_to_do.to_do})
-# TODO the new add to do button isn't working. It's not saving to the DB
 
 
-#gas calculator
+# @app.route("/view-trip")
+# def view_trip():
+#     upcoming_trip = request.form.get("past_trip")
+#     trip = crud.get_trips_by_tripid(upcoming_trip)
+#     print(upcoming_trip)
+#     # to_dest= request.form.get("to")
+#     # from_dest = request.form.get("from")
+#     # leave_date = request.form.get("depart_date")
+#     # return_date = request.form.get("return_date")
+#     # trip.to_dest = to_dest
+#     # trip.from_dest = from_dest
+#     # trip.leave_date = leave_date
+#     # trip.return_date = return_date
+#     return render_template("view_trip.html", trip=trip)
+
+# gas calculator
 @app.route("/gas-calc")
 def gas():
 

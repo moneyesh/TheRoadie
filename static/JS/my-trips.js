@@ -65,7 +65,6 @@ document.querySelector("#create-trip").addEventListener('submit', (event) => {
         window.location.reload()
     });
     ;
-//TODO the page should show some indication that a trip was created and should show in the future trips list
 });
 
 // this click event removes the hidden class on the to-do-form  div which lets users create a list of to-dos for their trip  
