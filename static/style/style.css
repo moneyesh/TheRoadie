@@ -5,9 +5,13 @@
 }
 
 #hotelMap {
-    width: 500px;
-    height: 500px;
+    width: 800px;
+    height: 700px;
     margin: 20px auto;
+}
+
+.hotel-search {
+    margin-left: 20px;
 }
 
 .to-do-list-item {

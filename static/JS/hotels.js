@@ -17,14 +17,14 @@ const hostnameRegexp = new RegExp("^https?://.+?/");
 const countries = {
 
   us: {
-    center: { lat: 37.1, lng: -95.7 },
-    zoom: 3,
+    center: { lat: 37.1, lng: -97.7 },
+    zoom: 4.3,
   },
 };
 
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
+  map = new google.maps.Map(document.getElementById("hotelMap"), {
     zoom: countries["us"].zoom,
     center: countries["us"].center,
     mapTypeControl: false,
@@ -41,16 +41,16 @@ function initMap() {
     document.getElementById("autocomplete"),
     {
       types: ["(cities)"],
-      componentRestrictions: countryRestrict,
+      componentRestrictions: {country: "us"}, // I restricted this to US search
       fields: ["geometry"],
     }
   );
   places = new google.maps.places.PlacesService(map);
   autocomplete.addListener("place_changed", onPlaceChanged);
   // Add a DOM event listener to react when the user selects a country.
-  document
-    .getElementById("country")
-    .addEventListener("change", setAutocompleteCountry);
+  // document
+  //   .getElementById("country")
+  //   .addEventListener("change", setAutocompleteCountry);
 }
 
 // When the user selects a city, get the place details for the city and
@@ -71,7 +71,7 @@ function onPlaceChanged() {
 function search() {
   const search = {
     bounds: map.getBounds(),
-    types: ["lodging"],
+    types: ['lodging'],
   };
 
   places.nearbySearch(search, (results, status, pagination) => {
@@ -258,9 +258,9 @@ function initAutocomplete() {
   address2Field = document.querySelector("#address2");
   postalField = document.querySelector("#postcode");
   // Create the autocomplete object, restricting the search predictions to
-  // addresses in the US and Canada.
+  // addresses in the US.
   autocomplete = new google.maps.places.Autocomplete(address1Field, {
-    componentRestrictions: { country: ["us", "ca"] },
+    componentRestrictions: { country: ["us"] },
     fields: ["address_components", "geometry"],
     types: ["address"],
   });
