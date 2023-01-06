@@ -11,14 +11,14 @@
             <div class="form-group">
                 <label for="from"> From: </label>
                 <div>
-                    <input type="text" id="from" placeholder="Origin">
+                    <input type="text" id="from" placeholder="Origin" class="autocomplete_fields">
                 </div>
             </div>
             <br>
             <div class="form-group">
                 <label for="to"> To: </label>
                 <div>
-                    <input type="text" id="to" placeholder="Destination">
+                    <input type="text" id="to" placeholder="Destination" class="autocomplete_fields">
                 </div>
             </div>
             <p>
@@ -40,8 +40,10 @@
 
 
 <script defer src="/static/JS/map.js"></script>
-<script defer src="https://maps.googleapis.com/maps/api/js?key={{ FRONT_GOOGLE }}&callback=initMap">
+<!-- <script defer src="https://maps.googleapis.com/maps/api/js?key={{ FRONT_GOOGLE }}&callback=initMap">
+</script> --> -->
+<script defer
+    src="https://maps.googleapis.com/maps/api/js?key={{ FRONT_GOOGLE }}&libraries=places&callback=initMap">
 </script>
-
 
 {% endblock %}

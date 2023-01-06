@@ -1,4 +1,5 @@
 "use strict";
+let autocomplete;
 
 function initMap() {
     console.log("INIT MAP")
@@ -6,8 +7,8 @@ function initMap() {
     const directionsRenderer = new google.maps.DirectionsRenderer();
 
     const mapOptions = {
-        zoom: 7,
-        center: myLocation,
+        zoom: 4.3,
+        center: { lat: 37.1, lng: -97.7 },
     };
     //create the map
     const map = new google.maps.Map(
@@ -17,7 +18,41 @@ function initMap() {
 
     directionsRenderer.setMap(map);
     console.log("MAP DRAWN")
+
+    autocomplete = new google.maps.places.Autocomplete(
+        document.getElementById('from'), 
+        {
+            types: ["(regions)"],
+            componentRestrictions: {country: "us"},
+            fields: ["geometry"]
+    }
+);
+
+    autocomplete = new google.maps.places.Autocomplete(
+        document.getElementById('to'), 
+        {
+            types: ["(regions)"],
+            componentRestrictions: {country: "us"},
+            fields: ["geometry"]
+    }
+    );
+    autocomplete.addListener("place_changed", onPlaceChanged);
+
 }
+
+function onPlaceChanged() {
+    const place = autocomplete.getPlace();
+  
+    if (place.geometry && place.geometry.location) {
+    //   map.panTo(place.geometry.location);
+    //   map.setZoom(15);
+    //   search();
+    // } else {
+      document.getElementById("from").placeholder = "Enter a city";
+      document.getElementById("to").placeholder = "Enter a city";
+    }
+  }
+
 
 function calcRoute(event) {
     event.preventDefault();
@@ -100,8 +135,13 @@ function renderMarker(waypoint, map) {
     //the weather conditions need to pull from current.condition.text and the icon can be from current.condition.icon
     // the images that are imported for icons need to be assigned to image for the certain weather conditions. 
 
-    
-
-
-
 window.initMap = initMap;
+
+
+
+
+//         {
+//             types: ["establishment"],
+//             fields: ["name", "place_id", "geometry"]
+//         });
+// }
