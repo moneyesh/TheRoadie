@@ -9,7 +9,7 @@ from datetime import date
 
 app = Flask(__name__)
 
-app.secret_key = "dev"
+app.secret_key = "devok"
 app.jinja_env.undefined = StrictUndefined
 
 FRONT_GOOGLE = os.environ['FRONT_GOOGLE']
@@ -74,6 +74,8 @@ def user_login():
 def dashboard():
     # checks the users logged in email and displays the dashboard with their info.
     logged_in_email = session.get("user_email")
+    if logged_in_email is None:
+        return redirect("/")
     user = crud.get_user_by_email(logged_in_email)
     trips = crud.get_trips_by_userid(user.user_id)
     soonest_trip = ""
