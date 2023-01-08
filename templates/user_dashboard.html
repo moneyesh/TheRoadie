@@ -11,7 +11,14 @@
     </p>
     
     <h3>Your trip to {{soonest_trip}} is in: {{countdown.days}} days</h3>
-<!-- something is causing the 00:00 to -->
+    <button type="button" id="view-to-dos">View To Do</button>
+    <div id="view-to-dos-container" class="hidden">
+   {% for list in current_trip.lists %}
+            {% for todo in list.to_dos%}
+                <p> {{todo.to_do}}</p>
+        {% endfor %}
+        {% endfor %}
+    </div>
     <h3><a href="/my-trips">My Trips </a></h3>
     
     <h3><a href="/gas-calc"> Gas Calculator </a></h3>
@@ -23,5 +30,5 @@
 
 
     
-
+<script src="/static/JS/current_todo_list.js"></script>
 {% endblock %}

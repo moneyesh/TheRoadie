@@ -79,6 +79,8 @@ def dashboard():
     user = crud.get_user_by_email(logged_in_email)
     trips = crud.get_trips_by_userid(user.user_id)
     soonest_trip = ""
+    current_trip = []
+    
     countdown = None 
     for trip in trips:        
         if trip.leave_date > date.today():
@@ -86,10 +88,12 @@ def dashboard():
             print(trip_countdown)
             if countdown is None or trip_countdown < countdown:
                 countdown = trip_countdown
-            soonest_trip = trip.to_dest
+                soonest_trip = trip.to_dest
+                current_trip = trip
+
     # print(soonest_trip)
     # print(countdown)
-    return render_template("user_dashboard.html", trips=trips, user=user, soonest_trip=soonest_trip, countdown=countdown)
+    return render_template("user_dashboard.html", trips=trips, user=user, soonest_trip=soonest_trip, countdown=countdown, current_trip=current_trip)
 
 
 @app.route("/logout")
@@ -261,6 +265,7 @@ def gas():
 @app.route("/hotels")
 def hotels():
     return render_template("hotels.html", HOTEL_GOOGLE=HOTEL_GOOGLE)
+
 
 if __name__ == "__main__":
     connect_to_db(app)
