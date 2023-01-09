@@ -9,7 +9,7 @@ from datetime import date
 
 app = Flask(__name__)
 
-app.secret_key = "devok"
+app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
 FRONT_GOOGLE = os.environ['FRONT_GOOGLE']

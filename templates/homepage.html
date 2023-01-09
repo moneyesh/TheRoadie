@@ -4,9 +4,12 @@
 
 
 {% block body %}
-
-<h1> Welcome to The Roadie!</h1>
-<h2> Create an account </h2>
+<div id="login">
+    <div class="login-text">
+        <h1> Welcome to The Roadie!</h1>
+    
+    <h2> Create an account </h2>
+</div>
 <form action="/register" method="POST">
 
     <p>
@@ -44,4 +47,8 @@
     </p>
 
 </form>
+<br>
+<div class="empty"></div>
+</div>
+
 {% endblock %}

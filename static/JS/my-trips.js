@@ -40,6 +40,7 @@ document.querySelector("#create-trip").addEventListener('submit', (event) => {
     const toDest = document.querySelector("#to").value;
     const fromDest = document.querySelector("#from").value;
     const toDoListInputs = document.querySelectorAll(".to-do-list-item");
+    const listName = document.querySelector("#list_name").value;
     const toDoListItems = [];
     for (const toDoListInput of toDoListInputs) {
         toDoListItems.push(toDoListInput.value);
@@ -50,7 +51,8 @@ document.querySelector("#create-trip").addEventListener('submit', (event) => {
         return_date:returnDate,
         to:toDest,
         from:fromDest,
-        to_do_list_items:toDoListItems
+        to_do_list_items:toDoListItems,
+        list_name: listName
 
     };
 

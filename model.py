@@ -46,7 +46,7 @@ class List(db.Model):
     to_dos = db.relationship("ToDo", back_populates='list')
 
     def __repr__(self):
-        return f'<List Table: list_id={self.list_id}, trip_id={self.trip_id}>'
+        return f'<List Table: list_id={self.list_id}, trip_id={self.trip_id}, list_name={self.list_name}>'
 
 
 class Trip(db.Model):

@@ -25,6 +25,10 @@
     <br/>
 
     <div id="updated-to-do" class="add-new-to-do-container">
+        {% for list in trip.lists %}
+        <h5>{{list.list_name}}</h5>
+        {% endfor %}
+        
         <p>{% for list in trip.lists %}</p>
            {% for to_do in list.to_dos %}
         <div id="container-{{ to_do.task_id }}" class="to-do-container">
@@ -37,7 +41,7 @@
     </div>
     <div>
 
-        <input class="update_to_do" id="new-updated-to-do-item" placeholder="enter a to-do to add to your list"></input>
+        <input class="update_to_do" id="new-updated-to-do-item" placeholder="enter to-do to add"></input>
         <button type="button" id="add-to-do-button" onclick="addToDo({{list.list_id}})">+ Add a to-do</button>
 
     </div>
