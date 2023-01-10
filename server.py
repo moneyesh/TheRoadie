@@ -93,12 +93,25 @@ def dashboard():
 
     # print(soonest_trip)
     # print(countdown)
+
     return render_template("user_dashboard.html", trips=trips, user=user, soonest_trip=soonest_trip, countdown=countdown, current_trip=current_trip)
 
+@app.route("/checkboxes", methods=["POST"])
+def checkboxes():
+    todos = request.json
+    # print(todos)
+    for todo in todos:
+        print(todo)
+        to_do = crud.find_to_do_by_id(int(todo["task_id"]))
+        print(to_do)
+        to_do.completed = todo["completed"]
+        db.session.commit()
+
+    return "Success"
 
 @app.route("/logout")
 def user_logout():
-    session.pop("user_id", None)
+    session.pop("user_email", None)
     flash("You have successfully logged out")
     return redirect("/")
 

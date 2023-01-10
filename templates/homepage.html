@@ -6,29 +6,49 @@
 {% block body %}
 <div id="login">
     <div class="login-text">
-        <h1> Welcome to The Roadie!</h1>
-    
-    <h2> Create an account </h2>
+        <h1 class="display-5"> Welcome to The Roadie!</h1>
+
+        <p id="intro"> The Roadie is the best roadtrip companion around. Not only can you create and save your upcoming adventures, but you can also check the weather for your route, check for hotels on the hotel map, and more. </p>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Register a New Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/register" method="POST">
+
+                        <p>
+                            <input type="text" name="first name" required="true" placeholder="first name">
+                            <input type="text" name="last name" required="true" placeholder="last name">
+                        </p>
+                        <p>
+                            <input type="text" name="email" required="true" placeholder="email">
+                        </p>
+
+                        <p>
+                            <input type="password" name="password" required="true" placeholder="password">
+                            <input type="password" name="confirm password" required="true"
+                                placeholder="confirm password">
+                        </p>
+
+                        <!-- <p>
+                            <input type="submit">
+                        </p> -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<form action="/register" method="POST">
-
-    <p>
-        <input type="text" name="first name" required="true" placeholder="first name">
-        <input type="text" name="last name" required="true" placeholder="last name">
-    </p>
-    <p>
-        <input type="text" name="email" required="true" placeholder="email">
-    </p>
-
-    <p>
-        <input type="password" name="password" required="true" placeholder="password">
-        <input type="password" name="confirm password" required="true" placeholder="confirm password">
-    </p>
-
-    <p>
-        <input type="submit">
-    </p>
-
 </form>
 
 
@@ -48,7 +68,12 @@
 
 </form>
 <br>
-<div class="empty"></div>
-</div>
+<!-- <div class="empty"></div>
+</div> -->
 
+<h6> Don't have an account? No problem! Just click here to sign up now.</h6>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Signup Now
+    </button>
 {% endblock %}

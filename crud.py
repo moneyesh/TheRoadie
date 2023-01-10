@@ -68,3 +68,7 @@ def get_list_by_id(id):
 
     return List.query.get(id)
 
+def check_checkbox(id):
+
+    return ToDo.query.get(id)
+

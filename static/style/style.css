@@ -80,7 +80,7 @@
     }
 }
 
-#login {
+body {
      background: url(/static/images/landscape.jpg) no-repeat center center fixed;
      display: table;
      height: 100%;
@@ -95,4 +95,23 @@
     width:100%; 
    
 
+}
+
+#intro {
+    text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Luckiest Guy", serif;
+}
+p {
+    font-family: "Advent Pro", 14pt;
+    font-size: medium;
+}
+.login-text {
+    margin: auto;
+    width: 50%;
+}
+#login {
+    padding-top: 10%;
 }
