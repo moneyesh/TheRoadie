@@ -4,11 +4,15 @@
 
 
 {% block body %}
+<body class="homepage">
+    
 <div id="login">
     <div class="login-text">
         <h1 class="display-5"> Welcome to The Roadie!</h1>
 
-        <p id="intro"> The Roadie is the best roadtrip companion around. Not only can you create and save your upcoming adventures, but you can also check the weather for your route, check for hotels on the hotel map, and more. </p>
+        <!-- <p id="intro"> The Roadie is the best roadtrip companion around. Not only can you create and save your upcoming
+            adventures, but you can also check the weather for your route, check for hotels on the hotel map, and more.
+        </p> -->
     </div>
 
 
@@ -52,28 +56,34 @@
 </form>
 
 
-<h2> Login </h2>
-<form action="/login" method="POST">
-    <p>
-        <input type="text" name="email" placeholder="email" required="true">
-    </p>
+<div class="modal-dialog text-center">
+    <div class="col-sm-9 main-section">
+        <div class="modal-content" id="login-modal">
+            <div class="col-12 user-img">
+                <img src="/static/images/car-side-solid.svg">
+            </div>
+            <h2> Login </h2>
 
-    <p>
-        <input type="password" name="password" placeholder="password" required="true">
-    </p>
-
-    <p>
-        <button type="submit">Login</button>
-    </p>
-
-</form>
+            <div class="col-12 form-input">
+                <form action="/login" method="POST">
+                    <div class="login-group">
+                        <input type="text" name="email" placeholder="email" required="true"><!--<img src="/static/images/email.png" alt="">--></input>
+                        <input type="password" name="password" placeholder="password" required="true">
+                    </div>
+                    <button type="submit" class="btn btn-success" id="login-btn">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <br>
 <!-- <div class="empty"></div>
 </div> -->
 
-<h6> Don't have an account? No problem! Just click here to sign up now.</h6>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Signup Now
-    </button>
+<h6 id="register"> Don't have an account? No problem! Just click here to sign up now.</h6>
+<!-- Button trigger modal -->
+<button id="signup" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Signup Now
+</button>
+</body>
 {% endblock %}

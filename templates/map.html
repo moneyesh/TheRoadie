@@ -3,6 +3,8 @@
 {% block title%} Map {% endblock %} -->
 
 {% block body %}
+<body class="weather">
+
 <div class="map">
     <div>
         <h1> Route and Weather </h1>
@@ -45,5 +47,5 @@
 <script defer
     src="https://maps.googleapis.com/maps/api/js?key={{ FRONT_GOOGLE }}&libraries=places&callback=initMap">
 </script>
-
+</body>
 {% endblock %}
