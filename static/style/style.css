@@ -14,6 +14,7 @@
 
 .map {
     margin: 30px;
+    text-align: center;
 }
 
 #distance-label {
@@ -28,14 +29,16 @@
     margin-right: 20px; 
 } */
 
-/* .distance {
-    float: right;
+.distance {
+   justify-content: right;
+   text-align: center;
     
-} */
+}
 
 .input-group {
-     margin:0px;
+     margin-bottom:30px;
      gap: 20px;
+     justify-content: center;
     /* padding-right: 200px;
     padding-left: 200px;
     padding-bottom: 30px; */
