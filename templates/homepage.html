@@ -70,9 +70,15 @@
                         <input type="text" name="email" placeholder="email" required="true"><!--<img src="/static/images/email.png" alt="">--></input>
                         <input type="password" name="password" placeholder="password" required="true">
                     </div>
-                    <button type="submit" class="btn btn-success" id="login-btn">Login</button>
+                    <button type="submit" class="btn btn-danger" id="login-btn" >Login</button>
                 </form>
             </div>
+            <p id="register"> Don't have an account? No problem!</p>
+            <!-- Button trigger modal -->
+            <button id="signup" type="button" class="btn btn-warning me-md-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Signup Now
+            </button>
+
         </div>
     </div>
 </div>
@@ -80,10 +86,5 @@
 <!-- <div class="empty"></div>
 </div> -->
 
-<h6 id="register"> Don't have an account? No problem! Just click here to sign up now.</h6>
-<!-- Button trigger modal -->
-<button id="signup" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Signup Now
-</button>
 </body>
 {% endblock %}

@@ -3,49 +3,54 @@
 {% block title%} Map {% endblock %} -->
 
 {% block body %}
+
 <body class="weather">
 
-<div class="map">
-    <div>
-        <h1> Route and Weather </h1>
-        <p> Please enter your from and to destination.</p>
-        <form id="map-route" action="#"> <!--check if this is right-->
-            <div class="form-group">
-                <label for="from"> From: </label>
-                <div>
-                    <input type="text" id="from" placeholder="Origin" class="autocomplete_fields">
-                </div>
-            </div>
-            <br>
-            <div class="form-group">
-                <label for="to"> To: </label>
-                <div>
-                    <input type="text" id="to" placeholder="Destination" class="autocomplete_fields">
-                </div>
-            </div>
-            <p>
-                <button type="submit" id="calc-route"> Calculate Route </button>
-            </p>
-        </form>
-        <label for="distnce">Distance (one way): </label>
+    <div class="map">
+        <div>
+            <h1> Route and Weather </h1>
+            <p> Please enter your from and to destination.</p>
+            <form id="map-route" action="#"> <!--check if this is right-->
+                <div class="map-form">
+                    <div class="input-group">
+                    <!-- <div class="form-group"> -->
+                        <span class="input-group-text" id="inputGroup-sizing-default"><i class="fa-solid fa-location-arrow"></i></span>
+                            <!-- <label for="from"> From: </label> -->
+                            <input type="text" id="from" placeholder="Origin" class="form-control" class="autocomplete_fields" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                       <div></div>
+                        <span class="input-group-text" id="inputGroup-sizing-default"><i class="fa-solid fa-location-dot"></i></span>
+                            <!-- <label for="to"> To: </label> -->
+                            <input type="text" id="to" placeholder="Destination" class="form-control" class="autocomplete_fields" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        
+
+
+                    </div>
+                        <p>
+                            <button type="submit" id="calc-route"> Calculate Route </button>
+                        </p>                    
+            </form>
+
+        </div>
+        <div class="distance">
+        <label for="distance" id="distance-label">Distance (one way): </label>
         <input type="text" id="distance" readonly></input>
-
+        </div>
     </div>
-</div>
-<section class="googleMap">
+    </div>
+    <section class="googleMap">
 
-    <div id="googleMap"></div>
+        <div id="googleMap"></div>
 
-    <div id="output"></div>
-</section>
+        <div id="output"></div>
+    </section>
 
 
 
-<script defer src="/static/JS/map.js"></script>
-<!-- <script defer src="https://maps.googleapis.com/maps/api/js?key={{ FRONT_GOOGLE }}&callback=initMap">
+    <script defer src="/static/JS/map.js"></script>
+    <!-- <script defer src="https://maps.googleapis.com/maps/api/js?key={{ FRONT_GOOGLE }}&callback=initMap">
 </script> --> -->
-<script defer
-    src="https://maps.googleapis.com/maps/api/js?key={{ FRONT_GOOGLE }}&libraries=places&callback=initMap">
-</script>
+    <script defer
+        src="https://maps.googleapis.com/maps/api/js?key={{ FRONT_GOOGLE }}&libraries=places&callback=initMap">
+        </script>
 </body>
 {% endblock %}

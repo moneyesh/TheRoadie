@@ -2,7 +2,8 @@
     width: 800px;
     height: 700px;
     margin: 20px auto;
-    box-shadow: 0px 5px 8px 8px #ccc;
+    box-shadow: 0px 2px 5px 4px #ccc;
+
 }
 
 #hotelMap {
@@ -12,8 +13,47 @@
 }
 
 .map {
-    margin-top: 20px;
+    margin: 30px;
 }
+
+#distance-label {
+    position: right;
+}
+
+#from {
+    margin-right: 30px;
+}
+
+#to {
+    margin-right: 20px; 
+}
+
+/* .distance {
+    float: right;
+    
+} */
+
+.input-group {
+     margin:auto;
+     width: 50%;
+    /* padding-right: 200px;
+    padding-left: 200px;
+    padding-bottom: 30px; */
+
+}
+
+/* .map-form {
+    margin: 20px;
+    text-align: center;
+}
+
+.form-group {
+    display: inline-block;
+    padding: 10px;
+    vertical-align: middle;
+    display: flex;
+    justify-content: space-between; */
+/* } */
 
 .hotel-search {
     margin-left: 20px;
@@ -44,7 +84,6 @@
     margin-right: 0.5em;
 }
 
-
 .remove-to-do {
     font-size: 12px;
     border-radius: 4px;
@@ -67,19 +106,21 @@
 }
 
 #menu-bar {
-    /* background-image: linear-gradient(-90deg ,#14DBA3,#F5F0A1); */
-    background-color: rgb(0, 0, 0);
+    background-image: linear-gradient(-90deg ,#dddddd,#bcf7e6);
+    /* background-color: rgb(179, 179, 179); */
 }
+
 .nav-item:hover {
     font-weight: 600;
     border-bottom: 1px solid #ffff;
-
 }
+
 .navbar-brand img {
     width: 180px;
     margin-top: 5px;
     margin-left: 20px;
 }
+
 @media only screen and (max-width: 1000px) {
     .nav-item:hover {
         border-bottom: none!important;
@@ -96,20 +137,18 @@ body.homepage {
 
 }
 
-body.weather {
+/* body.weather { */
     /* background: url(/static/images/clouds.jpg) no-repeat center center fixed;
     display: table;
     height: 100%;
     position: relative;
     width: 100%;
     background-size: cover; */
-}
+/* } */
 
 .empty {
     height:400px; 
     width:100%; 
-   
-
 }
 
 #intro {
@@ -119,14 +158,17 @@ body.weather {
 h1, h2, h3, h4, h5, h6 {
     font-family: "Luckiest Guy", serif;
 }
+
 p {
     font-family: "Advent Pro", 14pt;
     font-size: medium;
 }
+
 .login-text {
     margin: auto;
     width: 50%;
 }
+
 #login {
     padding-top: 10%;
 }
@@ -137,6 +179,7 @@ p {
     padding: 0;
 
 }
+
 #login-modal{
     background-color: white;
     opacity: .9;
@@ -146,6 +189,7 @@ p {
     margin: auto;
 
 }
+
 .user-img img {
     height: 120px;
     width: 120px;
@@ -170,9 +214,10 @@ p {
     border: 1;
     font-size: 16px;
     letter-spacing: 2px;
-    /* padding-left:40px; */
+    /* padding-left:40px; used for adding an icon at the beginning of input field */
     margin-bottom: 15px;
     text-align: center;
+    width: 350px;
 }
 /* .login-group::before {
     left: 28px;
@@ -195,5 +240,15 @@ p {
     margin-bottom: 10%;
     padding-left: 5%;
     padding-right: 5%;
+    border-color: white;
+}
 
+#login-btn:hover {
+    background-color: rgb(13, 136, 25);
+}
+
+#signup {
+    margin-bottom: 10%;
+    padding-left: 5%;
+    padding-right: 5%;
 }
