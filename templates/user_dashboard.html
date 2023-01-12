@@ -4,46 +4,52 @@
 
 {% block body %}
 
+<body id="dashboard">
+    <div class="upcoming-trip-container">
+        <h1> Welcome {{ user.first_name }} </h1>
 
-<h1> Welcome {{ user.first_name }} </h1>
-<p>
-    This will be the users dashboard
-</p>
+        <div class="col-md-4 ms-auto">
+            <p class="h3">Your trip to <span>{{soonest_trip}}</span> is in: <span>{{countdown.days}} days</span></p> 
+            <button type="button" class="btn btn-outline-success btn-sm " id="view-to-dos">View To-Do's</button>
+       </div>
+        <div class="col-md-3 ms-auto">
 
-<p>Your trip to {{soonest_trip}} is in: {{countdown.days}} days</p>
-<button type="button" id="view-to-dos">View To Do</button>
-<form id="check-todos" action="/checkboxes">
-    <div id="view-to-dos-container" class="hidden">
-        {% for list in current_trip.lists %}
-        {% for todo in list.to_dos%}
-        <p class="checked_todos">
-            {% if todo.completed %}
-            <input class="chkbox" type="checkbox" id="{{todo.task_id}}" name="{{todo.to_do}}" value="{{ todo.to_do}}"
-                checked>{{todo.to_do}}</input>
-            {% else %}
-            <input class="chkbox" type="checkbox" id="{{todo.task_id}}" name="{{todo.to_do}}"
-                value="{{ todo.to_do}}">{{todo.to_do}}</input>
-            {% endif %}
-        </p>
-
-
-        {% endfor %}
-        {% endfor %}
-
-        <button type="button" name="save_checked" onclick="completeToDo()">Save</button>
-
-</form>
-</div>
-<p><a href="/my-trips">My Trips </a></p>
-
-<p><a href="/gas-calc"> Gas Calculator </a></p>
-
-<p><a href="/map"> Weather Map </a></p>
-
-<p><a href="/hotels">Hotel Map</a></p>
+            <form id="check-todos" action="/checkboxes">
+                <div id="view-to-dos-container" class="hidden">
+                    {% for list in current_trip.lists %}
+                    {% for todo in list.to_dos%}
+                    <p class="checked_todos">
+                        {% if todo.completed %}
+                        <input class="chkbox" type="checkbox" id="{{todo.task_id}}" name="{{todo.to_do}}"
+                            value="{{ todo.to_do}}" checked>{{todo.to_do}}</input>
+                        {% else %}
+                        <input class="chkbox" type="checkbox" id="{{todo.task_id}}" name="{{todo.to_do}}"
+                            value="{{ todo.to_do}}">{{todo.to_do}}</input>
+                        {% endif %}
+                    </p>
 
 
 
+                    {% endfor %}
+                    {% endfor %}
 
-<script src="/static/JS/current_todo_list.js"></script>
+                    <button type="button" name="save_checked" onclick="completeToDo()">Save</button>
+
+            </form>
+        </div>
+    </div>
+    </div>
+    <p><a href="/my-trips">My Trips </a></p>
+
+    <p><a href="/gas-calc"> Gas Calculator </a></p>
+
+    <p><a href="/map"> Weather Map </a></p>
+
+    <p><a href="/hotels">Hotel Map</a></p>
+
+
+
+
+    <script src="/static/JS/current_todo_list.js"></script>
+</body>
 {% endblock %}

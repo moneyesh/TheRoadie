@@ -10,30 +10,56 @@
         <div>
             <h1> Route and Weather </h1>
             <p> Please enter your from and to destination.</p>
+            
+
             <form id="map-route" action="#"> <!--check if this is right-->
                 <div class="map-form">
                     <div class="input-group">
-                    <!-- <div class="form-group"> -->
-                        <span class="input-group-text" id="inputGroup-sizing-default"><i class="fa-solid fa-location-arrow"></i></span>
+                        <!-- <div class="form-group"> -->
+                        <div class="input-column">
+                            <div class="input-group-text" id="inputGroup-sizing-default"><i
+                                    class="fa-solid fa-location-arrow"></i></div>
                             <!-- <label for="from"> From: </label> -->
-                            <input type="text" id="from" placeholder="Origin" class="form-control" class="autocomplete_fields" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                       <div></div>
-                        <span class="input-group-text" id="inputGroup-sizing-default"><i class="fa-solid fa-location-dot"></i></span>
+                            <input type="text" id="from" placeholder="Origin" class="form-control"
+                                class="autocomplete_fields" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <div class="input-column">
+                            <div class="input-group-text" id="inputGroup-sizing-default"><i
+                                    class="fa-solid fa-location-dot"></i></div>
                             <!-- <label for="to"> To: </label> -->
-                            <input type="text" id="to" placeholder="Destination" class="form-control" class="autocomplete_fields" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                        
-
+                            <input type="text" id="to" placeholder="Destination" class="form-control"
+                                class="autocomplete_fields" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-default">
+                        </div>
+                     
+                        <button type="submit" id="calc-route"> Calculate Route </button>
 
                     </div>
-                        <p>
+
+
+                    <!-- <div class="map-form">
+                        <div class="input-group">
+                            <div class="input-group-text" id="inputGroup-sizing-default"><i
+                                    class="fa-solid fa-location-arrow"></i>
+                                <input type="text" id="from" placeholder="Origin" class="form-control"
+                                    class="autocomplete_fields" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-default">
+                            </div>
+                            <div class="input-group-text" id="inputGroup-sizing-default"><i
+                                    class="fa-solid fa-location-dot"></i>
+                                <input type="text" id="to" placeholder="Destination" class="form-control"
+                                    class="autocomplete_fields" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-default">
+                            </div>
                             <button type="submit" id="calc-route"> Calculate Route </button>
-                        </p>                    
+                        </div> -->
             </form>
 
         </div>
         <div class="distance">
-        <label for="distance" id="distance-label">Distance (one way): </label>
-        <input type="text" id="distance" readonly></input>
+            <label for="distance" id="distance-label">Distance (one way): </label>
+            <input type="text" id="distance" readonly></input>
         </div>
     </div>
     </div>

@@ -1,9 +1,9 @@
+/* MAP STYLES */
 #googleMap {
     width: 800px;
     height: 700px;
     margin: 20px auto;
     box-shadow: 0px 2px 5px 4px #ccc;
-
 }
 
 #hotelMap {
@@ -20,13 +20,13 @@
     position: right;
 }
 
-#from {
+/* #from {
     margin-right: 30px;
 }
 
 #to {
     margin-right: 20px; 
-}
+} */
 
 /* .distance {
     float: right;
@@ -34,31 +34,44 @@
 } */
 
 .input-group {
-     margin:auto;
-     width: 50%;
+     margin:0px;
+     gap: 20px;
     /* padding-right: 200px;
     padding-left: 200px;
     padding-bottom: 30px; */
 
 }
 
-/* .map-form {
-    margin: 20px;
-    text-align: center;
+.input-column {
+    display: inline-flex;
 }
 
-.form-group {
+.input-group-text {
+    display: inline-flex;
+}
+
+.form-control {
+    display: inline-block;
+    width: 250px;
+}
+.map-form {
+    width: 100%;
+}
+
+/* .form-group {
     display: inline-block;
     padding: 10px;
     vertical-align: middle;
     display: flex;
-    justify-content: space-between; */
-/* } */
+    justify-content: space-between; 
+} */
 
 .hotel-search {
     margin-left: 20px;
 }
 
+
+/* TO DO STYLES */
 .to-do-list-item {
     display: grid;
     margin-bottom: .5em;
@@ -105,6 +118,7 @@
     gap: 5px;
 }
 
+/* NAV BAR STYLES */
 #menu-bar {
     background-image: linear-gradient(-90deg ,#dddddd,#bcf7e6);
     /* background-color: rgb(179, 179, 179); */
@@ -127,6 +141,8 @@
     }
 }
 
+
+/* HOMEPAGE STYLES */
 body.homepage {
      background: url(/static/images/landscape.jpg) no-repeat center center fixed;
      display: table;
@@ -147,7 +163,7 @@ body.homepage {
 /* } */
 
 .empty {
-    height:400px; 
+    height:150px; 
     width:100%; 
 }
 
@@ -167,10 +183,11 @@ p {
 .login-text {
     margin: auto;
     width: 50%;
+    text-align: center;
 }
 
 #login {
-    padding-top: 10%;
+    padding-top: 6%;
 }
 
 .main-section {
@@ -251,4 +268,20 @@ p {
     margin-bottom: 10%;
     padding-left: 5%;
     padding-right: 5%;
+}
+
+
+/* DASHBOARD STYLES */
+body.dashboard {
+    height: 100%;
+    width: 100%;
+    margin: 20px auto;
+
+}
+.upcoming-trip-container {
+    margin: 30px;
+}
+
+.upcoming-trip-container span {
+   color: blue ;
 }
