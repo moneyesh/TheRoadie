@@ -8,46 +8,99 @@
     <div class="upcoming-trip-container">
         <h1> Welcome {{ user.first_name }} </h1>
 
-        <div class="col-md-4 ms-auto">
-            <p class="h3">Your trip to <span>{{soonest_trip}}</span> is in: <span>{{countdown.days}} days</span></p> 
-            <button type="button" class="btn btn-outline-success btn-sm " id="view-to-dos">View To-Do's</button>
-       </div>
+        <div class="counter">
+            <p class="h3">Your trip to <span>{{soonest_trip}}</span> is in: <span>{{countdown.days}} days</span>
+                <button type="button" class="btn btn-outline-success btn-sm " id="view-to-dos">View To-Do's</button>
+            </p>
+        </div>
         <div class="col-md-3 ms-auto">
-
             <form id="check-todos" action="/checkboxes">
                 <div id="view-to-dos-container" class="hidden">
+
                     {% for list in current_trip.lists %}
-                    {% for todo in list.to_dos%}
-                    <p class="checked_todos">
+                    <p class="list_name"> {{list.list_name }} </p>
+                    <ul>
+                        {% for todo in list.to_dos%}
                         {% if todo.completed %}
-                        <input class="chkbox" type="checkbox" id="{{todo.task_id}}" name="{{todo.to_do}}"
-                            value="{{ todo.to_do}}" checked>{{todo.to_do}}</input>
+
+                        <li id="checked_todos"><input class="chkbox" type="checkbox" id="{{todo.task_id}}"
+                                name="{{todo.to_do}}" value="{{ todo.to_do}}" checked>{{todo.to_do}}</input></li>
                         {% else %}
-                        <input class="chkbox" type="checkbox" id="{{todo.task_id}}" name="{{todo.to_do}}"
-                            value="{{ todo.to_do}}">{{todo.to_do}}</input>
+                        <li id="checked_todos"><input class="chkbox" type="checkbox" id="{{todo.task_id}}"
+                                name="{{todo.to_do}}" value="{{ todo.to_do}}">{{todo.to_do}}</input></li>
+
+
                         {% endif %}
-                    </p>
-
-
-
+                        {% endfor %}
+                    </ul>
                     {% endfor %}
-                    {% endfor %}
-
-                    <button type="button" name="save_checked" onclick="completeToDo()">Save</button>
-
+                    <div>
+                        <button type="button" class="btn btn-outline-primary" name="save_checked"
+                            onclick="completeToDo()">Save</button>
+                    </div>
             </form>
         </div>
     </div>
     </div>
-    <p><a href="/my-trips">My Trips </a></p>
+    <div class="dashboard-cards">
+        <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <div class="card" style="width: 18rem;">
+                    <a href="/my-trips"><img src="/static/images/Map.jpg" class="card-img-top" alt="map">
+                        <div class="card-body">
+                            <p class="card-text">My Trips</p>
+                    </a>
+                    <p class="card-text"> Plan, View, and Edit trips</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-auto">
+            <div class="card" style="width: 18rem;">
+                <a href="/gas-calc"> <img src="/static/images/gas.jpg" class="card-img-top" alt="map">
+                    <div class="card-body">
+                        <p class="card-text">Gas Calculator</p>
+                </a>
+                <p class="card-text">Get an estimate on gas costs</p>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
 
-    <p><a href="/gas-calc"> Gas Calculator </a></p>
+    <div class="container">
+        <div class="row justify-content-md-center">
+    <div class="col-md-auto">
+        <div class="card" style="width: 18rem;">
+            <a href="/map"> <img src="/static/images/w.png" class="card-img-top" alt="map">
+                <div class="card-body">
+                    <p class="card-text">Weather Map</p>
+            </a>
+            <p class="card-text">Check the weather along the route</p>
+        </div>
+        </div>
+    </div>
 
-    <p><a href="/map"> Weather Map </a></p>
+    <div class="col-md-auto">
+        <div class="card" style="width: 18rem;">
+            <a href="/map"> <img src="/static/images/hotel.png" class="card-img-top" alt="map">
+                <div class="card-body">
+                    <p class="card-text">Hotel Map</p>
+            </a>
+            <p class="card-text">Find a hotel</p>
+        </div>
+        </div>
+    </div>
+    </div>
+    <!-- <p><a href="/my-trips">My Trips </a></p> -->
+
+    <!-- <p><a href="/gas-calc"> Gas Calculator </a></p> -->
+
+    <!-- <p><a href="/map"> Weather Map </a></p>
 
     <p><a href="/hotels">Hotel Map</a></p>
-
-
+ -->
+    </div>
 
 
     <script src="/static/JS/current_todo_list.js"></script>
