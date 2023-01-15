@@ -106,7 +106,7 @@ def checkboxes():
         print(to_do)
         to_do.completed = todo["completed"]
         db.session.commit()
-
+    # flash("Saved Successfully") #TODO: flash not working
     return "Success"
 
 @app.route("/logout")

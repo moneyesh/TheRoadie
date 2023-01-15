@@ -4,91 +4,104 @@
 
 {% block body %}
 
-<body id="dashboard">
+<body class="dashboard">
     <div class="upcoming-trip-container">
         <h1> Welcome {{ user.first_name }} </h1>
 
         <div class="counter">
             <p class="h3">Your trip to <span>{{soonest_trip}}</span> is in: <span>{{countdown.days}} days</span>
-                <button type="button" class="btn btn-outline-success btn-sm " id="view-to-dos">View To-Do's</button>
+
+                <button type="button" data-bs-toggle="modal" class="btn btn-outline-success btn-sm" id="view-to-dos"
+                    data-bs-target="#todoModal">View To-Do's</button>
             </p>
-        </div>
-        <div class="col-md-3 ms-auto">
-            <form id="check-todos" action="/checkboxes">
-                <div id="view-to-dos-container" class="hidden">
-
-                    {% for list in current_trip.lists %}
-                    <p class="list_name"> {{list.list_name }} </p>
-                    <ul>
-                        {% for todo in list.to_dos%}
-                        {% if todo.completed %}
-
-                        <li id="checked_todos"><input class="chkbox" type="checkbox" id="{{todo.task_id}}"
-                                name="{{todo.to_do}}" value="{{ todo.to_do}}" checked>{{todo.to_do}}</input></li>
-                        {% else %}
-                        <li id="checked_todos"><input class="chkbox" type="checkbox" id="{{todo.task_id}}"
-                                name="{{todo.to_do}}" value="{{ todo.to_do}}">{{todo.to_do}}</input></li>
-
-
-                        {% endif %}
-                        {% endfor %}
-                    </ul>
-                    {% endfor %}
-                    <div>
-                        <button type="button" class="btn btn-outline-primary" name="save_checked"
-                            onclick="completeToDo()">Save</button>
+            <!-- Modal -->
+            <div class="modal fade" id="todoModal" tabindex="-1" aria-labelledby="todoModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="todoModalLabel">To-Do List</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                          
+                            <form id="check-todos" action="/checkboxes">
+                                <div id="view-to-dos-container" class="hidden">
+                                    <div class="modal-body">
+                                        {% for list in current_trip.lists %}
+                                        <p class="list_name"> {{list.list_name }} </p>
+                                        <ul>
+                                            {% for todo in list.to_dos%}
+                                            {% if todo.completed %}
+                                            <li id="checked_todos"><input class="chkbox" type="checkbox"
+                                                    id="{{todo.task_id}}" name="{{todo.to_do}}" value="{{ todo.to_do}}"
+                                                    checked>{{todo.to_do}}</input></li>
+                                            {% else %}
+                                            <li id="checked_todos"><input class="chkbox" type="checkbox"
+                                                    id="{{todo.task_id}}" name="{{todo.to_do}}"
+                                                    value="{{ todo.to_do}}">{{todo.to_do}}</input></li>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                        {% endfor %}
+                                        <div class="modal-footer" id="checklist-footer">
+    <button type="button" class="btn btn-outline-primary" name="save_checked" onclick="completeToDo()" data-bs-dismiss="modal">Save</button>
+                                        </div>
+                            </form>
+                        </div>
                     </div>
-            </form>
-        </div>
-    </div>
-    </div>
-    <div class="dashboard-cards">
-        <div class="container">
-        <div class="row justify-content-md-center">
-            <div class="col-md-auto">
-                <div class="card" style="width: 18rem;">
-                    <a href="/my-trips"><img src="/static/images/Map.jpg" class="card-img-top" alt="map">
-                        <div class="card-body">
-                            <p class="card-text">My Trips</p>
-                    </a>
-                    <p class="card-text"> Plan, View, and Edit trips</p>
                 </div>
             </div>
         </div>
-        <div class="col-md-auto">
-            <div class="card" style="width: 18rem;">
-                <a href="/gas-calc"> <img src="/static/images/gas.jpg" class="card-img-top" alt="map">
-                    <div class="card-body">
-                        <p class="card-text">Gas Calculator</p>
-                </a>
-                <p class="card-text">Get an estimate on gas costs</p>
+    </div>
+    </div>
+    </div>
+
+    <div class="dashboard-cards">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-md-auto">
+                    <div class="card" style="width: 25rem;">
+                        <a href="/my-trips"><img src="/static/images/Map1.jpg" class="card-img-top" alt="map">
+                            <div class="card-body">
+                                <p class="card-text">My Trips</p>
+                        </a>
+                        <p class="card-text"> Plan, View, and Edit trips</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-auto">
+                <div class="card" style="width: 25rem;">
+                    <a href="/gas-calc"> <img src="/static/images/car_gas1.jpg" class="card-img-top" alt="map">
+                        <div class="card-body">
+                            <p class="card-text">Gas Calculator</p>
+                    </a>
+                    <p class="card-text">Get an estimate on gas costs</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
     </div>
 
     <div class="container">
-        <div class="row justify-content-md-center">
-    <div class="col-md-auto">
-        <div class="card" style="width: 18rem;">
-            <a href="/map"> <img src="/static/images/w.png" class="card-img-top" alt="map">
-                <div class="card-body">
-                    <p class="card-text">Weather Map</p>
-            </a>
-            <p class="card-text">Check the weather along the route</p>
+        <div class="row justify-content-md-center mt-4">
+            <div class="col-md-auto">
+                <div class="card" style="width: 25rem;">
+                    <a href="/map"> <img src="/static/images/weather_1.jpg" class="card-img-top" alt="map">
+                        <div class="card-body">
+                            <p class="card-text">Weather Map</p>
+                    </a>
+                    <p class="card-text">Check the weather along the route</p>
+                </div>
+            </div>
         </div>
-        </div>
-    </div>
 
-    <div class="col-md-auto">
-        <div class="card" style="width: 18rem;">
-            <a href="/map"> <img src="/static/images/hotel.png" class="card-img-top" alt="map">
-                <div class="card-body">
-                    <p class="card-text">Hotel Map</p>
-            </a>
-            <p class="card-text">Find a hotel</p>
-        </div>
+        <div class="col-md-auto">
+            <div class="card" style="width: 25rem;">
+                <a href="/map"> <img src="/static/images/hotel1.jpg" class="card-img-top" alt="map">
+                    <div class="card-body">
+                        <p class="card-text">Hotel Map</p>
+                </a>
+                <p class="card-text">Find a hotel</p>
+            </div>
         </div>
     </div>
     </div>

@@ -1,32 +1,41 @@
 {% extends "base.html"%}
 
-  {% block title%} Hotel Search {% endblock %}
+{% block title%} Hotel Search {% endblock %}
 
 
 {% block body %}
-  <h2> Find a hotel </h2>
-  <div class="hotel-search">
-    <div id="findhotels">Find hotels in:</div>
 
+<body class="hotel">
+
+  <div class="mx-auto hotel" style="width: 200px;">
+    <h2> Find a hotel </h2>
+  </div>
+  <div class="hotel-search">
     <div id="locationField">
+      <label id="findhotels">Find hotels in:</label>
       <input id="autocomplete" placeholder="Enter a city" type="text" />
     </div>
+  </div>
 
-    <!-- <div id="controls">
+  <!-- <div id="controls">
       <select id="country">
         <option value="us" selected>U.S.A.</option>
       </select>
     </div> -->
+
   </div>
 
+  <div class="row" id="hotel-search">
+    <div class="col-sm-7"">
   <div id="hotelMap"></div>
-
+</div>
+<div class="col-sm-4"">
   <div id="listing">
     <table id="resultsTable">
       <tbody id="results"></tbody>
     </table>
   </div>
-
+</div>
   <div style="display: none">
     <div id="info-content">
       <table>
@@ -53,17 +62,19 @@
       </table>
     </div>
   </div>
+</div>
+</body>
 
-  <!-- 
+<!-- 
      The `defer` attribute causes the callback to execute after the full HTML
      document has been parsed. For non-blocking uses, avoiding race conditions,
      and consistent behavior across browsers, consider loading using Promises
      with https://www.npmjs.com/package/@googlemaps/js-api-loader.
     -->
-  <!-- <script defer src="https://maps.googleapis.com/maps/api/js?key={{ HOTEL_GOOGLE }}&callback=initMap&libraries=places&v=weekly"></script> -->
+<!-- <script defer src="https://maps.googleapis.com/maps/api/js?key={{ HOTEL_GOOGLE }}&callback=initMap&libraries=places&v=weekly"></script> -->
 
-  <script type="module" src="/static/JS/hotels.js"></script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-  <script defer
-    src="https://maps.googleapis.com/maps/api/js?key={{ HOTEL_GOOGLE }}&libraries=places&callback=initMap"></script>
+<script type="module" src="/static/JS/hotels.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script defer
+  src="https://maps.googleapis.com/maps/api/js?key={{ HOTEL_GOOGLE }}&libraries=places&callback=initMap"></script>
 {% endblock %}
