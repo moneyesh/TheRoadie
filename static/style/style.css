@@ -453,7 +453,7 @@ body.gas-calc {
     padding: 20px;
     border-radius: 20px;
     text-align: right;
-
+    box-shadow: 0px 0px 8px rgb(255, 255, 255), 10px 10px 8px rgba(0,0,0,0.2);
 }
 
 .calc form input {
