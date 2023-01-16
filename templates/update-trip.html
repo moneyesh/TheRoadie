@@ -4,10 +4,11 @@
 {% block body %}
 
 <body class="update-trip">
-
+  
+<div class="container trip-details">
 
     <form method="POST" action="/update/{{ trip.trip_id }}" id="update_trip">
-        <div class="container trip-details">
+        
           <!--  <div class="row justify-content-md\-center"> -->
 
         <!-- <div class="col-6 details"> -->
@@ -20,7 +21,7 @@
             <label> Going to: </label>
             <input type="text" id="to" name="to" value="{{ trip.to_dest }}"></input>
         </div>
-        <br />
+        <br/>
         <div>
             <label> Leave date: </label>
             <input type="date" id="leave_date" name="depart_date" value="{{ trip.leave_date }}"></input>
@@ -50,12 +51,10 @@
             <!-- this is where the add new items show up on the website when add to do is clicked -->
         </div>
         <br>
-        <div class="col-6 add-todo">
             <button class="btn btn-warning update-todo-btn" type="button" id="add-to-do-button"
                 onclick="addToDo({{list.list_id}})">+ Add a to-do</button>
             <input class="update_to_do" id="new-updated-to-do-item" placeholder="enter to-do to add"></input>
             <!-- </div> -->     
-        </div>
         {% endfor %}
         <br>
         <br>

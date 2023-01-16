@@ -143,7 +143,7 @@
 /* NAV BAR STYLES */
 #menu-bar {
     /* background-image: linear-gradient(-160deg ,white,#8acbce); */
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(208, 208, 208);
 }
 
 .nav-item:hover {
@@ -198,7 +198,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 * {
-    font-family: "Advent Pro", serif; /*TODO set font*/
+    font-family: "Urbanist", serif; /*TODO set font*/
     font-size: 12pt;
 }
 
@@ -395,24 +395,23 @@ body.trips {
 }
 
 
-
 /* Update-trip */
 body.update-trip {
     background: linear-gradient(180deg ,white,#a9eaee);
     background-attachment: fixed;
+    background: url(/static/images/test.jpg);
+    background-size: contain;
+    background-position: center;
+
 }
 
 .trip-details {
-    margin: 30px;
-    
+    background-color: white;
+    padding: 83px;
+    padding-left: 0px;
+    width: 50%; 
+    text-align: center;
 }
-
-.details {
-    text-align: centr;
-}
-/* .detail-fields  {
-    text-align: right;
-} */
 
 .add-todo {
     display: flex;
@@ -437,6 +436,9 @@ body.update-trip {
     border: none;
 }
 
+.add-new-to-do-container {
+    text-align: center;
+}
 
 
 /* Gas Calc */
