@@ -51,11 +51,13 @@
             <!-- this is where the add new items show up on the website when add to do is clicked -->
         </div>
         <br>
+        <div class="add-a-todo">
             <button class="btn btn-warning update-todo-btn" type="button" id="add-to-do-button"
                 onclick="addToDo({{list.list_id}})">+ Add a to-do</button>
             <input class="update_to_do" id="new-updated-to-do-item" placeholder="enter to-do to add"></input>
             <!-- </div> -->     
         {% endfor %}
+       </div>
         <br>
         <br>
         <button class="btn btn-danger col-2 mx-auto" type="submit" id="update-trip-btn"

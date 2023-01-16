@@ -407,8 +407,7 @@ body.update-trip {
 
 .trip-details {
     background-color: white;
-    padding: 83px;
-    padding-left: 0px;
+    padding-top: 50px;
     width: 50%; 
     text-align: center;
 }
@@ -436,10 +435,15 @@ body.update-trip {
     border: none;
 }
 
-.add-new-to-do-container {
-    text-align: center;
+.add-a-todo {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
 }
 
+.to-do-container {
+    text-align: center;
+}
 
 /* Gas Calc */
 body.gas-calc {
