@@ -3,29 +3,38 @@
 {% block title%} Gas {% endblock %}
 <!-- <script src="gas-calc.js"></script> -->
 {% block body %}
-
+<body class="gas-calc">
+    <div class="container" id="gas-page">
+    
     <h1> Gas Calculator </h1>
-    <p>
-       This will give an estimate of the gas cost 
-    </p>
+   <div class="container" id="gas-calc">
+     <div class="calc">
     <form id="gas-form">
+        <!-- <p>
+            <input type="text" readonly id="total-cost"> -->
+            <p>
+                <label>Total Gas Estimate:</label>
+                <input type="text" readonly value="0" id="gas_total">
+            <!-- </p> -->
+        </p>
         <p>
         <label>Distance: </label>
-        <input type="text" id="distance_mi" name="distance" placeholder="distance"></input>
+        <input type="text" id="distance_mi" name="distance" placeholder="miles"></input>
         </p>
         <p>
             <label>Miles per gallon (mpg): </label>
-            <input type="text" id="mpg" name="mpg" placeholder="miles per gallon"></input>
+            <input type="text" id="mpg" name="mpg" placeholder="mpg"></input>
         </p>
         <p>
             <label>Estimated cost of Gas per gallon: </label>
-            <input type="text" id="price" name="price" placeholder="estimated price of gas"></input>
+            <input type="text" id="price" name="price" placeholder="price"></input>
             </p>
         <button type="submit" id="total">Calculate</button>
-        <p>
+        <!-- <p>
             <label>Total Gas Estimate:</label>
             <input type="text" readonly value="0" id="gas_total">
-        </p>
+        </p> -->
+        
         <p>
             <label for="gallons-needed">Amount of Gallons Needed:</label>
             <input type="number" readonly value="0" id="gallons_needed">
@@ -33,8 +42,9 @@
     </form>
 
     <div>
-        
     </div>
+    </div>
+</div>
     <script src="../static/JS/calc.js"></script>
-
+</body>
 {% endblock %}

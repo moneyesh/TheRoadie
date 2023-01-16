@@ -381,6 +381,21 @@ body.trips {
     text-align: center;
 }
 
+.my-trip-btn {
+    transition: transform 0.4s, background-color 0.2s, color 0.2s;
+
+}
+
+.my-trip-btn:hover {
+    background-color: rgb(13, 136, 25);
+    transform: translateY(-3px);
+    /* color: var(--clr); */
+    box-shadow: 0 0 20px green;
+    color: white;
+    border: none;
+}
+
+
 /* Update-trip */
 body.update-trip {
     background: linear-gradient(180deg ,white,#a9eaee);
@@ -416,10 +431,79 @@ body.update-trip {
 }
 
 
+/* Gas Calc */
+body.gas-calc {
+    background-color: #ddf0dd;
+}
+
+#gas-page {
+    margin: 30px;
+    text-align: center;
+}
+
+#gas-calc {
+    margin-top: 30px;    
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.calc {
+    background: rgb(66, 66, 66);
+    padding: 20px;
+    border-radius: 20px;
+    text-align: right;
+
+}
+
+.calc form input {
+    border: 0;
+    outline: 0;
+    width: 70px;
+    height: 40px;
+    border-radius: 7px;
+    box-shadow: 0px 0px 3px rgb(205, 205, 205), 5px 5px 5px rgba(0,0,0,0.2);
+    margin: 6px;
+    text-align: center;
+    align: right;
+    font-size: 14pt;
+}
+
+.calc form label {
+    color: white;
+    font-size: 14pt;
+}
+
+#total {
+    margin-right: 3px;
+    border-radius: 5px;
+    background-color: green;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 40px;
+}
+
+.total:active {
+    /* background-color: #3e8e41; */
+    box-shadow: 0 7px #666;
+    transform: translateY(5px);
+  }
 
 
-
-
+#gas_total {
+    width: 90%;
+    margin:auto;
+    text-align: end;
+    box-shadow:inset 0px 0px 15px rgb(255, 255, 255),
+               inset 5px 5px 10px rgb(39, 39, 39);
+    /* border: solid; */
+    padding-right: 5px;
+    margin-bottom: 30px;
+    font-size: 16pt;
+}
 
 
 
