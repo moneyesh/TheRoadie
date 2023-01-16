@@ -383,7 +383,6 @@ body.trips {
 
 .my-trip-btn {
     transition: transform 0.4s, background-color 0.2s, color 0.2s;
-
 }
 
 .my-trip-btn:hover {
@@ -396,6 +395,7 @@ body.trips {
 }
 
 
+
 /* Update-trip */
 body.update-trip {
     background: linear-gradient(180deg ,white,#a9eaee);
@@ -404,7 +404,15 @@ body.update-trip {
 
 .trip-details {
     margin: 30px;
+    
 }
+
+.details {
+    text-align: centr;
+}
+/* .detail-fields  {
+    text-align: right;
+} */
 
 .add-todo {
     display: flex;
@@ -413,15 +421,14 @@ body.update-trip {
     align-items: baseline;
 }
 
-.update-todo-btn {
+.update-todo-btn, #update-trip-btn {
     padding: 3px;
-    padding-left: 6px;
+    padding-left: 8px;
+    padding-right: 8px;
     transition: transform 0.4s, background-color 0.2s, color 0.2s;
-
-
 }
 
-.update-todo-btn:hover {
+.update-todo-btn:hover, #update-trip-btn:hover {
     background-color: rgb(13, 136, 25);
     transform: translateY(-1px);
     /* color: var(--clr); */
@@ -429,6 +436,7 @@ body.update-trip {
     color: white;
     border: none;
 }
+
 
 
 /* Gas Calc */
@@ -465,7 +473,6 @@ body.gas-calc {
     box-shadow: 0px 0px 3px rgb(205, 205, 205), 5px 5px 5px rgba(0,0,0,0.2);
     margin: 6px;
     text-align: center;
-    align: right;
     font-size: 14pt;
 }
 
