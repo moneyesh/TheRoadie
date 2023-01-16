@@ -19,6 +19,7 @@
     background-size: cover;
  
 }*/
+
 #distance-label {
     position: right;
 }
@@ -32,14 +33,12 @@
      margin-bottom:30px;
      gap: 20px;
      justify-content: center;
-}
-
-.input-column {
-    display: inline-flex;
+     
 }
 
 .input-group-text {
     display: inline-flex;
+    border-radius: none;
 }
 
 .form-control {
@@ -48,6 +47,14 @@
 }
 .map-form {
     width: 100%;
+}
+
+#calc-route:hover {
+    background-color: rgb(13, 136, 25);
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px green;
+    border: none;
+    color: white;
 }
 
 
@@ -102,6 +109,7 @@
 .to-do-container {
     display: flex;
     align-items: baseline;
+    gap: 5px;
 }
 
 .to-do-list-item {
@@ -131,10 +139,11 @@
     gap: 5px;
 }
 
+
 /* NAV BAR STYLES */
 #menu-bar {
-    background-image: linear-gradient(-90deg ,#dddddd,#bcf7e6);
-    /* background-color: rgb(179, 179, 179); */
+    /* background-image: linear-gradient(-160deg ,white,#8acbce); */
+    background-color: rgb(255, 255, 255);
 }
 
 .nav-item:hover {
@@ -157,7 +166,7 @@
 
 /* HOMEPAGE STYLES */
 body.homepage {
-     background: url(/static/images/landscape.jpg) no-repeat center center fixed;
+     background: url(/static/images/landscape.jpg) no-repeat center center;
      display: table;
      height: 100%;
      position: relative;
@@ -188,9 +197,9 @@ h1, h2, h3, h4, h5, h6 {
     font-family: "Luckiest Guy", serif;
 }
 
-p {
-    font-family: "Advent Pro", 14pt;
-    font-size: medium;
+* {
+    font-family: "Advent Pro", serif; /*TODO set font*/
+    font-size: 12pt;
 }
 
 
@@ -202,6 +211,7 @@ p {
 
 #login {
     padding-top: 6%;
+    color: rgb(222, 219, 135);
 }
 
 .main-section {
@@ -264,16 +274,31 @@ p {
     padding-left: 5%;
     padding-right: 5%;
     border-color: white;
+    transition: transform 0.4s, background-color 0.4s, color 0.4s;
 }
 
 #login-btn:hover {
     background-color: rgb(13, 136, 25);
+    transform: translateY(-3px);
+    /* color: var(--clr); */
+    box-shadow: 0 0 20px green;
 }
 
 #signup {
     margin-bottom: 10%;
     padding-left: 5%;
     padding-right: 5%;
+    transition: transform 0.4s, background-color 0.4s, color 0.4s;
+
+}
+
+#signup:hover {
+    background-color: rgb(13, 136, 25);
+    transform: translateY(-3px);
+    /* color: var(--clr); */
+    box-shadow: 0 0 20px green;
+    color: white;
+    border: none;
 }
 
 
@@ -296,6 +321,7 @@ p {
 
 .upcoming-trip-container span {
    color: blue ;
+   font-size: 20pt;
 }
 
 #view-to-dos-container {
@@ -339,4 +365,82 @@ ul {
 #checklist-footer {
     border: none;
     padding-bottom: 0;
+}
+
+/* MY TRIPS */
+body.trips {
+    background-color: rgb(217, 245, 254);
+    position: relative;
+}
+
+#trips {
+    margin-top: 30px;
+}
+
+.container.future-trips, .container.past-trips h3 {
+    text-align: center;
+}
+
+/* Update-trip */
+body.update-trip {
+    background: linear-gradient(180deg ,white,#a9eaee);
+    background-attachment: fixed;
+}
+
+.trip-details {
+    margin: 30px;
+}
+
+.add-todo {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+    align-items: baseline;
+}
+
+.update-todo-btn {
+    padding: 3px;
+    padding-left: 6px;
+    transition: transform 0.4s, background-color 0.2s, color 0.2s;
+
+
+}
+
+.update-todo-btn:hover {
+    background-color: rgb(13, 136, 25);
+    transform: translateY(-1px);
+    /* color: var(--clr); */
+    box-shadow: 0 0 20px green;
+    color: white;
+    border: none;
+}
+
+
+
+
+
+
+
+
+
+.custom-shape-divider-bottom-1673808961 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1673808961 svg {
+    position: relative;
+    display: block;
+    width: calc(198% + 1.3px);
+    height: 195px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1673808961 .shape-fill {
+    fill: #99B700;
 }

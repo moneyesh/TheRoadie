@@ -61,6 +61,7 @@ function addToDo(list_id) {
         const newUpdateButton = document.createElement('button');
         newUpdateButton.setAttribute('name', data.task_id);
         newUpdateButton.setAttribute('onclick', 'updateToDo(event, name)');
+        newUpdateButton.setAttribute('class', 'btn btn-warning update-todo-btn')
         newUpdateButton.innerHTML = "Update";
         containerDiv.appendChild(newUpdateButton);
 
@@ -68,20 +69,9 @@ function addToDo(list_id) {
         const newRemoveButton = document.createElement('button');
         newRemoveButton.setAttribute('name', data.task_id);
         newRemoveButton.setAttribute('onclick', 'removeToDo(name)');
+        newRemoveButton.setAttribute('class', 'btn btn-warning update-todo-btn')
         newRemoveButton.innerHTML = "Remove"
         containerDiv.appendChild(newRemoveButton);
      })
 
 }
-
-
-    // Maybe this can be something that will show when reviewing the to-do list after saving it
-    // const checkbox = document.createElement("input");
-    // checkbox.type = 'checkbox';
-    // checkbox.id = 'completed_chkbox';
-    // checkbox.name = 'completed_chkbox';
-    // checkbox.value = 'completed';
-    // toDoList.appendChild(checkbox);
-    // console.log(checkbox)
-
-    // select checkbox and do .check if equal to 

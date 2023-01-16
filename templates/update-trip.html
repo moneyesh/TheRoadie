@@ -2,54 +2,71 @@
 {% block title%} Trip Details {% endblock %}
 
 {% block body %}
-<h1> Trip Details </h1>
 
-<form method="POST" action="/update/{{ trip.trip_id }}" id="update_trip">
-    <div>
-        <label> Leaving from: </label>
-        <input type="text" id="from" name="from" value="{{ trip.from_dest }}"></input>
+<body class="update-trip">
 
-        <label> Going to: </label>
-        <input type="text" id="to" name="to" value="{{ trip.to_dest }}"></input>
-    </div>
-    <br />
-    <div>
-        <label> Leave date: </label>
-        <input type="date" id="leave_date" name="depart_date" value="{{ trip.leave_date }}"></input>
 
-        <label> Return date: </label>
-        <input type="date" id="return_date" name="return_date" value="{{ trip.return_date }}"></input>
+    <form method="POST" action="/update/{{ trip.trip_id }}" id="update_trip">
+        <div class="container trip-details">
+            <div class="row">
 
-    </div>
+                <div class="col-8">
+                    <h1> Trip Details </h1>
 
-    <br/>
+                    <div>
+                        <label> Leaving from: </label>
+                        <input type="text" id="from" name="from" value="{{ trip.from_dest }}"></input>
 
-    <div id="updated-to-do" class="add-new-to-do-container">
-        {% for list in trip.lists %}
-        <h5>{{list.list_name}}</h5>
-        {% endfor %}
-        
-        <p>{% for list in trip.lists %}</p>
-           {% for to_do in list.to_dos %}
-        <div id="container-{{ to_do.task_id }}" class="to-do-container">
-            <input value="{{ to_do.to_do }}" class="update_to_do" name="{{ to_do.task_id }}"></input>
-            <button name="{{ to_do.task_id }}" onclick="updateToDo(event, name)">Update</button>
-            <button name="{{ to_do.task_id }}" onclick="removeToDo(name)">Remove</button>
-        </div>
-        {% endfor %}
-        <!-- this is where the add new items show up on the website when add to do is clicked -->
-    </div>
-    <div>
+                        <label> Going to: </label>
+                        <input type="text" id="to" name="to" value="{{ trip.to_dest }}"></input>
+                    </div>
+                    <br />
+                    <div>
+                        <label> Leave date: </label>
+                        <input type="date" id="leave_date" name="depart_date" value="{{ trip.leave_date }}"></input>
 
-        <input class="update_to_do" id="new-updated-to-do-item" placeholder="enter to-do to add"></input>
-        <button type="button" id="add-to-do-button" onclick="addToDo({{list.list_id}})">+ Add a to-do</button>
+                        <label> Return date: </label>
+                        <input type="date" id="return_date" name="return_date" value="{{ trip.return_date }}"></input>
 
-    </div>
-    {% endfor %}
-    <br>
-    <br>
-    <button type="submit" name="save_trip">Save Trip</button>
+                    </div>
+                </div>
+                <br />
+                <div class="col-4">
+                    <div id="updated-to-do" class="add-new-to-do-container">
+                        {% for list in trip.lists %}
+                        <h5>{{list.list_name}}</h5>
+                        {% endfor %}
+
+                        {% for list in trip.lists %}
+                        {% for to_do in list.to_dos %}
+                        <div id="container-{{ to_do.task_id }}" class="to-do-container">
+                            <input value="{{ to_do.to_do }}" class="update_to_do" name="{{ to_do.task_id }}"></input>
+                            <button class="btn btn-warning update-todo-btn" name="{{ to_do.task_id }}"
+                                onclick="updateToDo(event, name)">Update</button>
+                            <button class="btn btn-warning update-todo-btn" name="{{ to_do.task_id }}"
+                                onclick="removeToDo(name)">Remove</button>
+                        </div>
+                        {% endfor %}
+                        <!-- this is where the add new items show up on the website when add to do is clicked -->
+                    </div>
+                    <br>
+                    <div class="col-sm add-todo">
+                        <button class="btn btn-warning update-todo-btn" type="button" id="add-to-do-button"
+                            onclick="addToDo({{list.list_id}})">+ Add a to-do</button>
+                        <input class="update_to_do" id="new-updated-to-do-item"
+                            placeholder="enter to-do to add"></input>
+                        <!-- </div> -->
+                    </div>
+                    {% endfor %}
+                    <br>
+                    <br>
+                    <button class="btn btn-warning" type="submit" name="save_trip">Save Trip</button>
+                </div>
     </form>
 
+    </div>
+    </div>
+    </div>
+</body>
 <script src="/static/JS/update-trip.js"></script>
 {% endblock %}
