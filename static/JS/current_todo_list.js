@@ -41,7 +41,7 @@ function completeToDo() {
     fetch(`/checkboxes`, {
         method:'POST',
         body:JSON.stringify(body), //change to json to send to server
-        headers:headers //required in fetch
+        headers:headers //required in fetch. it tells what the format of the dictionary will represent. On line 1
     })
     .then(response => response.text()) //the response that we will get back from server.py
     .then(data => console.log(data))

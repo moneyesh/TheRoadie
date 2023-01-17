@@ -11,7 +11,7 @@
     text-align: center;
 }
 /* body.weather {
-    background: url(/static/images/watercolor-paper-texture.jpg) no-repeat center center fixed;
+    background:url(/static/images/topography.webp) no-repeat center center fixed;
     display: table;
     height: 100%;
     position: relative;
@@ -371,6 +371,21 @@ ul {
 #checklist-footer {
     border: none;
     padding-bottom: 0;
+}
+
+#view-to-dos {
+    transition: transform 0.4s, background-color 0.2s, color 0.2s;
+
+}
+
+#view-to-dos:hover {
+    background-color: rgb(13, 136, 25);
+    transform: translateY(-1px);
+    /* color: var(--clr); */
+    box-shadow: 0 0 20px green;
+    color: white;
+    border: none;
+
 }
 
 /* MY TRIPS */
