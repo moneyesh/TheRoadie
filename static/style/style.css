@@ -110,6 +110,7 @@
     display: flex;
     align-items: baseline;
     gap: 5px;
+    justify-content: center;
 }
 
 .to-do-list-item {
@@ -147,6 +148,10 @@
 
 }
 
+.navbar-text{
+    color: yellow
+
+}
 .nav-item:hover {
     font-weight: 600;
     border-bottom: 1px solid #ffff;
@@ -399,6 +404,11 @@ body.trips {
     border: none;
 }
 
+.plan-trip {
+    text-align: center;
+}
+
+
 
 /* Update-trip */
 body.update-trip {
@@ -451,9 +461,9 @@ body.update-trip {
     left: 170px;
 }
 
-.to-do-container {
+/* .to-do-container {
     text-align: center;
-}
+} */
 
 .add-new-to-do-container {
     position: relative !important;
