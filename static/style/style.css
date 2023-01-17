@@ -142,8 +142,9 @@
 
 /* NAV BAR STYLES */
 #menu-bar {
-    /* background-image: linear-gradient(-160deg ,white,#8acbce); */
-    background-color: rgb(208, 208, 208);
+    /* background-image: linear-gradient(-180deg ,#172f22, white); */
+    background-color: rgb(10, 71, 9);
+
 }
 
 .nav-item:hover {
@@ -166,7 +167,7 @@
 
 /* HOMEPAGE STYLES */
 body.homepage {
-     background: url(/static/images/landscape.jpg) no-repeat center center;
+     background: url(/static/images/scenery.png) no-repeat center center;
      display: table;
      height: 100%;
      position: relative;
@@ -198,7 +199,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 * {
-    font-family: "Urbanist", serif; /*TODO set font*/
+    font-family: "Urbanist", serif; 
     font-size: 12pt;
 }
 
@@ -211,7 +212,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #login {
     padding-top: 6%;
-    color: rgb(222, 219, 135);
+    color:rgb(245 190 6);
 }
 
 .main-section {
@@ -369,12 +370,16 @@ ul {
 
 /* MY TRIPS */
 body.trips {
-    background-color: rgb(217, 245, 254);
+    background: linear-gradient(180deg ,white,#a9eaee);
     position: relative;
+    /* background: url(/static/images/sunset.jpg);
+    background-size: contain; */
 }
 
 #trips {
-    margin-top: 30px;
+    padding-top: 30px;
+    /* background-color: white;
+    opacity: .7; */
 }
 
 .container.future-trips, .container.past-trips h3 {
@@ -397,17 +402,20 @@ body.trips {
 
 /* Update-trip */
 body.update-trip {
-    background: linear-gradient(180deg ,white,#a9eaee);
+     background: linear-gradient(180deg ,white,#a9eaee);
+    /* background-attachment: fixed; */
+    background: url(/static/images/road1.png);
+    background-position: left;
     background-attachment: fixed;
-    background: url(/static/images/test.jpg);
-    background-size: contain;
-    background-position: center;
-
+}
+.update-trip-flipped {
+    transform: scaleY(-1)
 }
 
 .trip-details {
-    background-color: white;
+    /* background-color: white; */
     padding-top: 50px;
+    padding-bottom: 50px;
     width: 50%; 
     text-align: center;
 }
@@ -439,15 +447,22 @@ body.update-trip {
     display: flex;
     align-items: baseline;
     gap: 5px;
+    position: relative !important;
+    left: 170px;
 }
 
 .to-do-container {
     text-align: center;
 }
 
+.add-new-to-do-container {
+    position: relative !important;
+    left: 150px;
+}
+
 /* Gas Calc */
 body.gas-calc {
-    background-color: #ddf0dd;
+    background: linear-gradient(180deg ,white,#f7f4b7);
 }
 
 #gas-page {
@@ -520,24 +535,5 @@ body.gas-calc {
 
 
 
-.custom-shape-divider-bottom-1673808961 {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    transform: rotate(180deg);
-}
 
-.custom-shape-divider-bottom-1673808961 svg {
-    position: relative;
-    display: block;
-    width: calc(198% + 1.3px);
-    height: 195px;
-    transform: rotateY(180deg);
-}
 
-.custom-shape-divider-bottom-1673808961 .shape-fill {
-    fill: #99B700;
-}
