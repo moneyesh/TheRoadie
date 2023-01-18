@@ -10,15 +10,9 @@
     margin: 30px;
     text-align: center;
 }
-/* body.weather {
-    background:url(/static/images/topography.webp) no-repeat center center fixed;
-    display: table;
-    height: 100%;
-    position: relative;
-    width: 100%;
-    background-size: cover;
- 
-}*/
+body.weather {
+    background-image: linear-gradient(-180deg ,white,#abcdda);
+}
 
 #distance-label {
     position: right;
@@ -72,11 +66,10 @@
     justify-content: center;
 }
 
-/* body.hotel  {
-    height: 100%;
-    width: 100%;
-    margin: 30px auto; 
-}*/
+body.hotel  {
+    background-image: linear-gradient(-180deg ,white,#fcecc7);
+
+}
 
 .hotel-search {
     margin-left: 60px;
@@ -178,6 +171,7 @@ body.homepage {
      position: relative;
      width: 100%;
      background-size: cover;
+     
 
 }
 
@@ -314,6 +308,8 @@ body.dashboard {
     background: url(/static/images/road2.png) no-repeat center center;
     background-size: cover;
     background-position: top;
+    background-attachment: fixed;
+    padding-bottom: 300px;
 }
 
 .counter {
@@ -392,10 +388,11 @@ ul {
 body.trips {
     /* background: linear-gradient(180deg ,white,#a9eaee);
     position: relative; */
-    background: url(/static/images/summer.png) no-repeat center center;
+    background: url(/static/images/desert.jpg);
     background-size: cover;
-    background-position: left;
-    position: relative;
+    background-position: center;
+    background-attachment: fixed;
+    padding-bottom: 300px;
 }
 
 #view-trips-container {
@@ -465,6 +462,7 @@ body.update-trip {
     /* background-attachment: fixed; */
     background: url(/static/images/road1.png);
     background-position: left;
+    
 }
 .update-trip-flipped {
     transform: scaleY(-1)
@@ -521,7 +519,8 @@ body.gas-calc {
     background: url(/static/images/hills.jpg);
     background-position: top;
     background-size: cover;
-    padding-bottom: 100px;
+    background-attachment: fixed;
+    padding-bottom: 300px;
 
 }
 
