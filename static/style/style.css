@@ -390,17 +390,51 @@ ul {
 
 /* MY TRIPS */
 body.trips {
-    background: linear-gradient(180deg ,white,#a9eaee);
+    /* background: linear-gradient(180deg ,white,#a9eaee);
+    position: relative; */
+    background: url(/static/images/summer.png) no-repeat center center;
+    background-size: cover;
+    background-position: left;
     position: relative;
-    /* background: url(/static/images/sunset.jpg);
-    background-size: contain; */
 }
 
+#view-trips-container {
+    text-align: center;
+}
+
+#view-trips-col.col-4 {
+    display: inline;
+}
 #trips {
-    padding-top: 30px;
+    padding-top: 100px;
+    padding-left: 80px;
     /* background-color: white;
     opacity: .7; */
 }
+
+/* .plan-trip {
+    background-color: rgb(255, 255, 255, 0.9);
+} */
+
+#plan-trip-box {
+    width: 700px;
+    height: 400px;
+    background-color: rgb(255, 255, 255, 0.94);
+    display: table;
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+#view-trip-box {
+    width: 400px;
+    height: 400px;
+    background-color: rgb(255, 255, 255, 0.94);
+    display: table;
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+
 
 .container.future-trips, .container.past-trips h3 {
     text-align: center;

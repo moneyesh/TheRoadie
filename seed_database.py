@@ -24,6 +24,10 @@ for n in range(5):
 model.db.session.commit()
 print(user)
 
+demo_user = crud.create_user('travelingisfun@test.com', 'Monica', 'Jones', 'pass')
+model.db.session.add(demo_user)
+model.db.session.commit()
+
 
 test_trips = [
     {'to_dest': 'Phoenix, Arizona',

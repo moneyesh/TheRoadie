@@ -3,60 +3,66 @@
 {% block title%} My Trips {% endblock %}
 
 {% block body %}
+
 <body class="trips">
 
-<div class="container" id="trips">
-    <div class="row">
-        <div class="col-8 plan-trip" >
-            <h1> Plan a new trip </h1>
-            <p>
-            <form method="POST" action="/my-trips/create-trip" id="create-trip">
-                <div>
-                    <label> Leaving from: </label>
-                    <input type="text" id="from" name="from" placeholder="origin"></input>
+    <div class="container" id="trips">
+        <div class="row"">
+            <div class=" col-7 plan-trip">
 
-                    <label> Going to: </label>
-                    <input type="text" id="to" name="to" placeholder="destination"></input>
-                </div>
-                <br />
-                <div>
-                    <label> Leave date: </label>
-                    <input type="date" id="leave_date" name="depart_date" placeholder="mm/dd/yyyy"></input>
+            <div id="plan-trip-box">
+                <h1> Plan a new trip </h1>
+                <!-- <p> -->
+                <form method="POST" action="/my-trips/create-trip" id="create-trip">
+                    <div>
+                        <label> Leaving from: </label>
+                        <input type="text" id="from" name="from" placeholder="origin"></input>
 
-                    <label> Return date: </label>
-                    <input type="date" id="return_date" name="return_date" placeholder="mm/dd/yyyy"></input>
-
-                </div>
-                <br>
-
-                <br>
-                <div id="to-do-form" class="hidden">
-                    <label> List Name: </label>
-                    <input type="text" id="list_name"
-                        placeholder="ex: kid's list, car list"></input>
+                        <label> Going to: </label>
+                        <input type="text" id="to" name="to" placeholder="destination"></input>
+                    </div>
                     <br />
-                    <br />
-                    <div id="to-do-list"></div>
-                    <br />
-                    <button class="btn btn-warning my-trip-btn" type="button" id="to-do-list-button">+ Add a to-do</button>
-                </div>
-                <br>
-                <div>
-                    <button class="btn btn-warning my-trip-btn" type="button" id="create_list" onclick="this.style.display='none'">Create a To-Do
-                        List</button>
-               
-                <button class="btn btn-warning my-trip-btn" type="submit" name="save-trip-button">Save Trip</button>
- </div>
-            </form>
-            </p>
+                    <div>
+                        <label> Leave date: </label>
+                        <input type="date" id="leave_date" name="depart_date" placeholder="mm/dd/yyyy"></input>
 
+                        <label> Return date: </label>
+                        <input type="date" id="return_date" name="return_date" placeholder="mm/dd/yyyy"></input>
+
+                    </div>
+                    <br>
+
+                    <br>
+                    <div id="to-do-form" class="hidden">
+                        <label> List Name: </label>
+                        <input type="text" id="list_name" placeholder="ex: kid's list, car list"></input>
+                        <br />
+                        <br />
+                        <div id="to-do-list"></div>
+                        <br />
+                        <button class="btn btn-warning my-trip-btn" type="button" id="to-do-list-button">+ Add a
+                            to-do</button>
+                    </div>
+                    <br>
+                    <div>
+                        <button class="btn btn-warning my-trip-btn" type="button" id="create_list"
+                            onclick="this.style.display='none'">Create a To-Do
+                            List</button>
+
+                        <button class="btn btn-warning my-trip-btn" type="submit" name="save-trip-button">Save
+                            Trip</button>
+                    </div>
+                </form>
+                <!-- </p> -->
+            </div>
         </div>
         <br />
-            <div class="col-auto">
+        <div id="view-trip-box">
 
-                <div class="container future-trips">
+            <div class="col-4" id="view-trips-col">
+                <div class="container" id="view-trips-container">
                     <h3> View Future Trips </h3>
-                    <p>
+                    <!-- <p> -->
                     <form action="/update" method="POST">
                         <select for="future_trip_list" name="future_trip">
 
@@ -68,9 +74,8 @@
                         <br><br>
                         <button class="btn btn-warning my-trip-btn" type="submit">View Trip Details / Edit Trip</button>
                     </form>
-
-                    </p>
                 </div>
+                <!-- </p> -->
                 <br>
                 <div class="container past-trips">
                     <h3>Past Trips</h3>
@@ -88,12 +93,12 @@
                     </form>
                     </p>
                 </div>
+            </div>
         </div>
     </div>
-</div>
 
 
-<script src="/static/JS/my-trips.js"></script>
+
+    <script src="/static/JS/my-trips.js"></script>
 </body>
 {% endblock %}
-
