@@ -310,11 +310,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* DASHBOARD STYLES */
 
-/* body.dashboard {
-    height: 100%;
-    width: 100%;
-    margin: 30px auto;
-} */
+body.dashboard {
+    background: url(/static/images/road2.png) no-repeat center center;
+    background-size: cover;
+    background-position: top;
+}
 
 .counter {
     text-align: center;
@@ -461,11 +461,10 @@ body.trips {
 
 /* Update-trip */
 body.update-trip {
-     background: linear-gradient(180deg ,white,#a9eaee);
+     /* background: linear-gradient(180deg ,white,#a9eaee); */
     /* background-attachment: fixed; */
     background: url(/static/images/road1.png);
     background-position: left;
-    background-attachment: fixed;
 }
 .update-trip-flipped {
     transform: scaleY(-1)
@@ -474,7 +473,7 @@ body.update-trip {
 .trip-details {
     /* background-color: white; */
     padding-top: 50px;
-    padding-bottom: 50px;
+    padding-bottom: 150px;
     width: 50%; 
     text-align: center;
 }
@@ -507,21 +506,23 @@ body.update-trip {
     align-items: baseline;
     gap: 5px;
     position: relative !important;
-    left: 170px;
 }
 
-/* .to-do-container {
-    text-align: center;
-} */
-
-.add-new-to-do-container {
-    position: relative !important;
-    left: 150px;
+.add-todo-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 
 /* Gas Calc */
 body.gas-calc {
-    background: linear-gradient(180deg ,white,#f7f4b7);
+    /* background: linear-gradient(180deg ,white,#f7f4b7); */
+    background: url(/static/images/hills.jpg);
+    background-position: top;
+    background-size: cover;
+    padding-bottom: 100px;
+
 }
 
 #gas-page {
@@ -539,6 +540,7 @@ body.gas-calc {
 .calc {
     background: rgb(66, 66, 66);
     padding: 20px;
+    padding-bottom: 50px;
     border-radius: 20px;
     text-align: right;
     box-shadow: 0px 0px 8px rgb(255, 255, 255), 10px 10px 8px rgba(0,0,0,0.2);
