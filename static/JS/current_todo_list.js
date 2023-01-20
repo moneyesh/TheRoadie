@@ -40,11 +40,10 @@ function completeToDo() {
     // }
     fetch(`/checkboxes`, {
         method:'POST',
-        body:JSON.stringify(body), //change to json to send to server
+        body:JSON.stringify(body), //change to json to send to server, the browser gives me a string(text) and this changes it to JSON bc the server is expecting a json. Translates info from web to python flask to js and since js uses json that's why it needs to be translated to json.
         headers:headers //required in fetch. it tells what the format of the dictionary will represent. On line 1
     })
     .then(response => response.text()) //the response that we will get back from server.py
-    .then(data => console.log(data))
-    
+    .then(data => {console.log(data), window.location.reload()})
     
     }

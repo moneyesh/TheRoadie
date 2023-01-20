@@ -1,0 +1,5 @@
+ip adress on aws: 18.116.8.73
+get to virtual aws terminal: ssh -i ~/.ssh/aws.pem ubuntu@18.116.8.73
+
+scp -i ~/.ssh/aws.pem from to
+scp -i ~/.ssh/aws.pem /Users/iesha/src/the_roadie/TheRoadie/secrets.sh ubuntu@18.116.8.73:TheRoadie/

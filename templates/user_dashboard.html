@@ -9,11 +9,13 @@
         <h1> Welcome {{ user.first_name }} </h1>
 
         <div class="counter">
+            {%if countdown%}
             <p class="h3">Your trip to <span>{{soonest_trip}}</span> is in: <span>{{countdown.days}} days</span>
 
                 <button type="button" data-bs-toggle="modal" class="btn btn-warning btn-sm" id="view-to-dos"
                     data-bs-target="#todoModal">View To-Do's</button>
             </p>
+            {% endif %}
             <!-- Modal -->
             <div class="modal fade" id="todoModal" tabindex="-1" aria-labelledby="todoModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
@@ -26,6 +28,7 @@
                             <form id="check-todos" action="/checkboxes">
                                 <div id="view-to-dos-container" class="hidden">
                                     <div class="modal-body">
+                                        {% if current_trip %}
                                         {% for list in current_trip.lists %}
                                         <p class="list_name"> {{list.list_name }} </p>
                                         <ul>
@@ -41,7 +44,9 @@
                                             {% endif %}
                                             {% endfor %}
                                         </ul>
+                                       
                                         {% endfor %}
+                                        {% endif %}
                                         <div class="modal-footer" id="checklist-footer">
     <button type="button" class="btn btn-outline-primary" name="save_checked" onclick="completeToDo()" data-bs-dismiss="modal">Save</button>
                                         </div>

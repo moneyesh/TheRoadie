@@ -1,13 +1,26 @@
 # functions that will populate my model.py
 from model import db, User, List, Trip, ToDo, connect_to_db
+from passlib.hash import pbkdf2_sha256
 
 # USER FUNCTIONS
 
 def create_user(email, fname, lname, password):
     """Create and returns a new user"""
+    hashed_password = pbkdf2_sha256.hash(password)  
+   
     user = User(email=email, first_name=fname, last_name=lname, password=password)
 
     return user
+
+# def check_hash_account(email, password):
+#     """Check if hashed pw in db matches entered password"""
+
+#     user = User.query.filter(User.email == email).first()
+
+#     if pbkdf2_sha256.verify(password, user.password):
+#         return user
+#     else:
+#         return False 
 
 
 def get_user_by_email(email):

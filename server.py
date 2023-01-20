@@ -6,6 +6,8 @@ from jinja2 import StrictUndefined
 import os
 import requests
 from datetime import date
+import pathlib 
+from passlib.hash import pbkdf2_sha256
 
 app = Flask(__name__)
 
@@ -106,7 +108,7 @@ def checkboxes():
         print(to_do)
         to_do.completed = todo["completed"]
         db.session.commit()
-    # flash("Saved Successfully") #TODO: flash not working
+    flash("Saved Successfully")
     return "Success"
 
 @app.route("/logout")
