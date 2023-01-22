@@ -68,7 +68,7 @@ body.weather {
 
 body.hotel  {
     background-image: linear-gradient(-180deg ,white,#fcecc7);
-
+    margin-bottom: 250px;
 }
 
 .hotel-search {
