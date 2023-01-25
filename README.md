@@ -1,5 +1,5 @@
 # The Roadie
-[Check out The Roadie](https://www.theroadieapp.com)
+[Check out The Roadie](https://theroadieapp.com/)
 
 Learn more about the developer [here](https://www.linkedin.com/in/iesha222/)
 ___________________
