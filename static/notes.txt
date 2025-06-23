@@ -1,7 +1,11 @@
-** new static ip address on aws: 3.20.62.171
+To connect to a server, a virtual env can be created by typing in the terminal: virtualenv env, source env/bin/activate, pip3 install -r requirements.txt and source secrets.sh for first time use of an enviornment and then run python(or python3) server.py. Use ip at the bottom of server.py to get to site from web browser. A light sail acct is set up to use a server on AWS for others to navigate to site. All this info is found in the "flask" document from Hackbright. Use command "ssh -i ~/.ssh/aws.pem ubuntu@54.89.180.156" in the terminal, ctrl+d to end session.
+
+** new static ip address on aws: 54.89.180.156
 dynamic ip address on aws: 18.116.8.73
 
-get to virtual aws terminal: ssh -i ~/.ssh/aws.pem ubuntu@3.20.62.171
+get to virtual aws via terminal: ssh -i ~/.ssh/aws.pem ubuntu@54.89.180.156
 
 scp -i ~/.ssh/aws.pem from to
 scp -i ~/.ssh/aws.pem /Users/iesha/src/the_roadie/TheRoadie/secrets.sh ubuntu@3.20.62.171:TheRoadie/
+
+render.yaml is for deploying on render
