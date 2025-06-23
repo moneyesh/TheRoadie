@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: the-roadie
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn server:app"
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: FRONT_GOOGLE
+        sync: false
+      - key: BACK_GOOGLE
+        sync: false
+      - key: MY_WEATHER
+        sync: false
+      - key: HOTEL_GOOGLE
+        sync: false
+
+ 
