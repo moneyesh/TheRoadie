@@ -1,19 +1,17 @@
+# Exported from Render on 2025-06-24T02:12:05Z
 services:
-  - type: web
-    name: the-roadie
-    env: python
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn server:app"
-    envVars:
-      - key: FLASK_ENV
-        value: production
-      - key: FRONT_GOOGLE
-        sync: false
-      - key: BACK_GOOGLE
-        sync: false
-      - key: MY_WEATHER
-        sync: false
-      - key: HOTEL_GOOGLE
-        sync: false
+- type: web
+  name: TheRoadie
+  runtime: python
+  repo: https://github.com/moneyesh/TheRoadie
+  plan: free
+  envVars:
+  - key: secrets.sh
+    sync: false
+  region: virginia
+  buildCommand: pip install -r requirements.txt
+  startCommand: gunicorn server:app
+  autoDeployTrigger: commit
+version: "1"
 
  
